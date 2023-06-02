@@ -411,7 +411,7 @@
             this.tableLayoutBorErrEv.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 17.85714F));
             this.tableLayoutBorErrEv.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 82.14286F));
             this.tableLayoutBorErrEv.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 45F));
-            this.tableLayoutBorErrEv.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 209F));
+            this.tableLayoutBorErrEv.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 212F));
             this.tableLayoutBorErrEv.Controls.Add(this.labelLinks, 3, 0);
             this.tableLayoutBorErrEv.Controls.Add(this.labelNu, 2, 1);
             this.tableLayoutBorErrEv.Controls.Add(this.labelBorders, 1, 0);
@@ -437,7 +437,7 @@
             // 
             this.labelLinks.AutoSize = true;
             this.labelLinks.Font = new System.Drawing.Font("Consolas", 12F);
-            this.labelLinks.Location = new System.Drawing.Point(173, 4);
+            this.labelLinks.Location = new System.Drawing.Point(170, 4);
             this.labelLinks.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.labelLinks.Name = "labelLinks";
             this.labelLinks.Size = new System.Drawing.Size(72, 18);
@@ -449,7 +449,7 @@
             this.labelNu.AutoSize = true;
             this.labelNu.Dock = System.Windows.Forms.DockStyle.Right;
             this.labelNu.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Italic);
-            this.labelNu.Location = new System.Drawing.Point(145, 30);
+            this.labelNu.Location = new System.Drawing.Point(142, 30);
             this.labelNu.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.labelNu.Name = "labelNu";
             this.labelNu.Size = new System.Drawing.Size(18, 31);
@@ -460,20 +460,20 @@
             // 
             this.labelBorders.AutoSize = true;
             this.labelBorders.Font = new System.Drawing.Font("Consolas", 12F);
-            this.labelBorders.Location = new System.Drawing.Point(27, 4);
+            this.labelBorders.Location = new System.Drawing.Point(26, 4);
             this.labelBorders.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.labelBorders.Name = "labelBorders";
-            this.labelBorders.Size = new System.Drawing.Size(90, 18);
+            this.labelBorders.Size = new System.Drawing.Size(81, 18);
             this.labelBorders.TabIndex = 5;
             this.labelBorders.Text = "Межі наближення";
             // 
             // textBoxBorderA
             // 
             this.textBoxBorderA.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textBoxBorderA.Location = new System.Drawing.Point(26, 30);
+            this.textBoxBorderA.Location = new System.Drawing.Point(25, 30);
             this.textBoxBorderA.Margin = new System.Windows.Forms.Padding(4);
             this.textBoxBorderA.Name = "textBoxBorderA";
-            this.textBoxBorderA.Size = new System.Drawing.Size(93, 26);
+            this.textBoxBorderA.Size = new System.Drawing.Size(91, 26);
             this.textBoxBorderA.TabIndex = 2;
             this.textBoxBorderA.Text = "1";
             this.textBoxBorderA.Leave += new System.EventHandler(this.textBoxBorderA_Leave);
@@ -481,10 +481,10 @@
             // textBoxBorderB
             // 
             this.textBoxBorderB.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textBoxBorderB.Location = new System.Drawing.Point(26, 69);
+            this.textBoxBorderB.Location = new System.Drawing.Point(25, 69);
             this.textBoxBorderB.Margin = new System.Windows.Forms.Padding(4);
             this.textBoxBorderB.Name = "textBoxBorderB";
-            this.textBoxBorderB.Size = new System.Drawing.Size(93, 26);
+            this.textBoxBorderB.Size = new System.Drawing.Size(91, 26);
             this.textBoxBorderB.TabIndex = 3;
             this.textBoxBorderB.Text = "7";
             this.textBoxBorderB.Leave += new System.EventHandler(this.textBoxBorderB_Leave);
@@ -496,7 +496,7 @@
             this.labelA.Location = new System.Drawing.Point(5, 30);
             this.labelA.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.labelA.Name = "labelA";
-            this.labelA.Size = new System.Drawing.Size(12, 19);
+            this.labelA.Size = new System.Drawing.Size(11, 19);
             this.labelA.TabIndex = 6;
             this.labelA.Text = "a";
             // 
@@ -507,13 +507,13 @@
             this.labelB.Location = new System.Drawing.Point(5, 69);
             this.labelB.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.labelB.Name = "labelB";
-            this.labelB.Size = new System.Drawing.Size(12, 19);
+            this.labelB.Size = new System.Drawing.Size(11, 19);
             this.labelB.TabIndex = 7;
             this.labelB.Text = "b";
             // 
             // textBoxNu
             // 
-            this.textBoxNu.Location = new System.Drawing.Point(172, 30);
+            this.textBoxNu.Location = new System.Drawing.Point(169, 30);
             this.textBoxNu.Margin = new System.Windows.Forms.Padding(4);
             this.textBoxNu.Name = "textBoxNu";
             this.textBoxNu.Size = new System.Drawing.Size(176, 26);
@@ -641,7 +641,7 @@
             // 
             this.splitContainer1.Panel2.Controls.Add(this.dataGridViewParams);
             this.splitContainer1.Size = new System.Drawing.Size(376, 513);
-            this.splitContainer1.SplitterDistance = 349;
+            this.splitContainer1.SplitterDistance = 347;
             this.splitContainer1.SplitterWidth = 5;
             this.splitContainer1.TabIndex = 3;
             // 
@@ -654,7 +654,7 @@
             this.tabControlPlots.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.tabControlPlots.Name = "tabControlPlots";
             this.tabControlPlots.SelectedIndex = 0;
-            this.tabControlPlots.Size = new System.Drawing.Size(376, 349);
+            this.tabControlPlots.Size = new System.Drawing.Size(376, 347);
             this.tabControlPlots.TabIndex = 6;
             // 
             // tabPageFunc
@@ -664,7 +664,7 @@
             this.tabPageFunc.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.tabPageFunc.Name = "tabPageFunc";
             this.tabPageFunc.Padding = new System.Windows.Forms.Padding(5, 4, 5, 4);
-            this.tabPageFunc.Size = new System.Drawing.Size(368, 317);
+            this.tabPageFunc.Size = new System.Drawing.Size(368, 315);
             this.tabPageFunc.TabIndex = 0;
             this.tabPageFunc.Text = "Графіки функцій";
             this.tabPageFunc.UseVisualStyleBackColor = true;
@@ -674,7 +674,7 @@
             this.tableLayoutCharts1.CellBorderStyle = System.Windows.Forms.TableLayoutPanelCellBorderStyle.Inset;
             this.tableLayoutCharts1.ColumnCount = 2;
             this.tableLayoutCharts1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutCharts1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 42F));
+            this.tableLayoutCharts1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 48F));
             this.tableLayoutCharts1.Controls.Add(this.chart2, 0, 1);
             this.tableLayoutCharts1.Controls.Add(this.trackBar2, 1, 1);
             this.tableLayoutCharts1.Controls.Add(this.trackBar1, 1, 0);
@@ -686,7 +686,7 @@
             this.tableLayoutCharts1.RowCount = 2;
             this.tableLayoutCharts1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutCharts1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutCharts1.Size = new System.Drawing.Size(358, 309);
+            this.tableLayoutCharts1.Size = new System.Drawing.Size(358, 307);
             this.tableLayoutCharts1.TabIndex = 0;
             // 
             // chart2
@@ -714,7 +714,7 @@
             legend1.Name = "Legend1";
             legend1.TableStyle = System.Windows.Forms.DataVisualization.Charting.LegendTableStyle.Tall;
             this.chart2.Legends.Add(legend1);
-            this.chart2.Location = new System.Drawing.Point(7, 159);
+            this.chart2.Location = new System.Drawing.Point(7, 158);
             this.chart2.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.chart2.Name = "chart2";
             series1.BorderWidth = 2;
@@ -737,7 +737,7 @@
             series2.YValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.Double;
             this.chart2.Series.Add(series1);
             this.chart2.Series.Add(series2);
-            this.chart2.Size = new System.Drawing.Size(300, 144);
+            this.chart2.Size = new System.Drawing.Size(294, 143);
             this.chart2.TabIndex = 5;
             this.chart2.Text = "chart2";
             this.chart2.MouseMove += new System.Windows.Forms.MouseEventHandler(this.chart_MouseMove);
@@ -745,22 +745,22 @@
             // trackBar2
             // 
             this.trackBar2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.trackBar2.Location = new System.Drawing.Point(318, 159);
+            this.trackBar2.Location = new System.Drawing.Point(312, 158);
             this.trackBar2.Margin = new System.Windows.Forms.Padding(4);
             this.trackBar2.Name = "trackBar2";
             this.trackBar2.Orientation = System.Windows.Forms.Orientation.Vertical;
-            this.trackBar2.Size = new System.Drawing.Size(34, 144);
+            this.trackBar2.Size = new System.Drawing.Size(40, 143);
             this.trackBar2.TabIndex = 4;
             this.trackBar2.Scroll += new System.EventHandler(this.trackBar_Scroll);
             // 
             // trackBar1
             // 
             this.trackBar1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.trackBar1.Location = new System.Drawing.Point(318, 6);
+            this.trackBar1.Location = new System.Drawing.Point(312, 6);
             this.trackBar1.Margin = new System.Windows.Forms.Padding(4);
             this.trackBar1.Name = "trackBar1";
             this.trackBar1.Orientation = System.Windows.Forms.Orientation.Vertical;
-            this.trackBar1.Size = new System.Drawing.Size(34, 143);
+            this.trackBar1.Size = new System.Drawing.Size(40, 142);
             this.trackBar1.TabIndex = 3;
             this.trackBar1.Scroll += new System.EventHandler(this.trackBar_Scroll);
             // 
@@ -808,7 +808,7 @@
             series4.Name = "S(A,x)";
             this.chart1.Series.Add(series3);
             this.chart1.Series.Add(series4);
-            this.chart1.Size = new System.Drawing.Size(300, 143);
+            this.chart1.Size = new System.Drawing.Size(294, 142);
             this.chart1.TabIndex = 0;
             this.chart1.Text = "chart1";
             this.chart1.MouseMove += new System.Windows.Forms.MouseEventHandler(this.chart_MouseMove);
@@ -820,7 +820,7 @@
             this.tabPageDer.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.tabPageDer.Name = "tabPageDer";
             this.tabPageDer.Padding = new System.Windows.Forms.Padding(5, 4, 5, 4);
-            this.tabPageDer.Size = new System.Drawing.Size(368, 323);
+            this.tabPageDer.Size = new System.Drawing.Size(368, 305);
             this.tabPageDer.TabIndex = 1;
             this.tabPageDer.Text = "Графіки похідних";
             this.tabPageDer.UseVisualStyleBackColor = true;
@@ -830,7 +830,7 @@
             this.tableLayoutPanel2.CellBorderStyle = System.Windows.Forms.TableLayoutPanelCellBorderStyle.Inset;
             this.tableLayoutPanel2.ColumnCount = 2;
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 42F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 48F));
             this.tableLayoutPanel2.Controls.Add(this.chart4, 0, 1);
             this.tableLayoutPanel2.Controls.Add(this.trackBar3, 1, 0);
             this.tableLayoutPanel2.Controls.Add(this.trackBar4, 1, 1);
@@ -843,7 +843,7 @@
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(358, 315);
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(358, 297);
             this.tableLayoutPanel2.TabIndex = 1;
             // 
             // chart4
@@ -871,7 +871,7 @@
             legend3.Name = "Legend1";
             legend3.TableStyle = System.Windows.Forms.DataVisualization.Charting.LegendTableStyle.Tall;
             this.chart4.Legends.Add(legend3);
-            this.chart4.Location = new System.Drawing.Point(7, 162);
+            this.chart4.Location = new System.Drawing.Point(7, 153);
             this.chart4.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.chart4.Name = "chart4";
             series5.BorderWidth = 2;
@@ -894,7 +894,7 @@
             series6.YValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.Double;
             this.chart4.Series.Add(series5);
             this.chart4.Series.Add(series6);
-            this.chart4.Size = new System.Drawing.Size(300, 147);
+            this.chart4.Size = new System.Drawing.Size(294, 138);
             this.chart4.TabIndex = 6;
             this.chart4.Text = "chart4";
             this.chart4.MouseMove += new System.Windows.Forms.MouseEventHandler(this.chart_MouseMove);
@@ -902,22 +902,22 @@
             // trackBar3
             // 
             this.trackBar3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.trackBar3.Location = new System.Drawing.Point(318, 6);
+            this.trackBar3.Location = new System.Drawing.Point(312, 6);
             this.trackBar3.Margin = new System.Windows.Forms.Padding(4);
             this.trackBar3.Name = "trackBar3";
             this.trackBar3.Orientation = System.Windows.Forms.Orientation.Vertical;
-            this.trackBar3.Size = new System.Drawing.Size(34, 146);
+            this.trackBar3.Size = new System.Drawing.Size(40, 137);
             this.trackBar3.TabIndex = 3;
             this.trackBar3.Scroll += new System.EventHandler(this.trackBar_Scroll);
             // 
             // trackBar4
             // 
             this.trackBar4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.trackBar4.Location = new System.Drawing.Point(318, 162);
+            this.trackBar4.Location = new System.Drawing.Point(312, 153);
             this.trackBar4.Margin = new System.Windows.Forms.Padding(4);
             this.trackBar4.Name = "trackBar4";
             this.trackBar4.Orientation = System.Windows.Forms.Orientation.Vertical;
-            this.trackBar4.Size = new System.Drawing.Size(34, 147);
+            this.trackBar4.Size = new System.Drawing.Size(40, 138);
             this.trackBar4.TabIndex = 4;
             this.trackBar4.Scroll += new System.EventHandler(this.trackBar_Scroll);
             // 
@@ -965,7 +965,7 @@
             series8.Name = "S`(A,x)";
             this.chart3.Series.Add(series7);
             this.chart3.Series.Add(series8);
-            this.chart3.Size = new System.Drawing.Size(300, 146);
+            this.chart3.Size = new System.Drawing.Size(294, 137);
             this.chart3.TabIndex = 5;
             this.chart3.Text = "chart3";
             this.chart3.MouseMove += new System.Windows.Forms.MouseEventHandler(this.chart_MouseMove);
@@ -989,7 +989,7 @@
             this.dataGridViewParams.Margin = new System.Windows.Forms.Padding(4);
             this.dataGridViewParams.Name = "dataGridViewParams";
             this.dataGridViewParams.ReadOnly = true;
-            this.dataGridViewParams.Size = new System.Drawing.Size(376, 159);
+            this.dataGridViewParams.Size = new System.Drawing.Size(376, 161);
             this.dataGridViewParams.TabIndex = 8;
             // 
             // Num
