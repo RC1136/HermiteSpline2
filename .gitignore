@@ -1,0 +1,9 @@
+.vs
+Debug
+Release
+ConsoleGUI/Debug
+ConsoleGUI/x64
+HermiteLib/Debug
+HermiteLib/Release
+HermiteSpline/bin
+HermiteSpline/obj
