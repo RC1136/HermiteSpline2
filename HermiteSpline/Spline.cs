@@ -28,8 +28,8 @@ namespace HermiteSpline
             internal int type;
             internal int param_count; //к-сть параметрів у одній ланці
             internal int link_count;  //кількість ланок
-            internal IntPtr A;       //параметри сплайна (link_conut*param_count елементів)
-            internal IntPtr X;		 //точки наближення (link_count+1 елементів)
+            internal IntPtr A;        //параметри сплайна (link_conut*param_count елементів)
+            internal IntPtr X;		  //точки наближення (link_count+1 елементів)
             internal IntPtr A128;
             internal IntPtr X128;
         };

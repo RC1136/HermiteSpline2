@@ -71,8 +71,11 @@ int main(void)
 		hp.param_count = 5;
 
 	function f[] = { funcs[funcnum], dfuncs[funcnum]};
-	HermGen(f, &hp, a, b, nu);
+	res = HermGen(f, &hp, a, b, nu);
 
+	if (res < 0) {
+		printf("HermGen failed...\n");
+	}
 
 	return 0;
 }
