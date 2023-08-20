@@ -49,6 +49,20 @@ double dEP5(const double x, const double A[5])
 }
 
 
+double W22(const double x, const double A[5])
+{
+	// A = A[0], a1 = A[1], a2 = A[2], b1 = A[3], b2 = A[4]
+	return A[0] * pow(x, A[1] + A[2] * x) * exp(A[3] * x + A[4] * x * x);
+}
+
+
+double dW22(const double x, const double A[5])
+{
+	// A = A[0], a1 = A[1], a2 = A[2], b1 = A[3], b2 = A[4]
+	return A[0] * pow(x, A[1] + A[2] * x - 1.) * exp(A[3] * x + A[4] * x * x) *
+		(A[1] + A[2] * x * (1 + log(x)) + A[3] * x + 2. * A[4] * x * x);
+}
+
 
 //ѕол≥ном з count+1 параметрами 
 double Polynomial(const double x, const double* a, const int count) 
@@ -99,20 +113,22 @@ double dPN5(const double x, const double a[5])
 //≈рм≥товий сплайн з параметрами hp. якщо derivative == 1, то обчислюЇтьс€ пох≥дна
 double HermiteSpline(const herm_params hp, const double x, const char derivative)
 {
-	static double (*const link[2][6])(const double, const double[]) = {
+	static double (*const link[2][linktype_count])(const double, const double[]) = {
 		{
-			[powexp4] = PE4,
-			[powexp5] = PE5,
-			[poly4]   = PN4,
-			[poly5]   = PN5,
-			[exppow5] = EP5,
+			[powexp4]  = PE4,
+			[powexp5]  = PE5,
+			[poly4]    = PN4,
+			[poly5]    = PN5,
+			[exppow5]  = EP5,
+			[pow2exp2] = W22,
 		},
 		{
-			[powexp4] = dPE4,
-			[powexp5] = dPE5,
-			[poly4]   = dPN4,
-			[poly5]   = dPN5,
-			[exppow5] = dEP5,
+			[powexp4]  = dPE4,
+			[powexp5]  = dPE5,
+			[poly4]    = dPN4,
+			[poly5]    = dPN5,
+			[exppow5]  = dEP5,
+			[pow2exp2] = dW22,
 		},
 	};
 	if (x < hp.X[0] || x > hp.X[hp.link_count]) {
@@ -303,6 +319,63 @@ int HermGenEP5(const double F[5], const double x0, const double x2, double* out)
 	return 0;
 }
 
+
+//ќбчислюЇ параметри ланки W22
+int HermGenW22(const double F[5], const double x0, const double x2, double* out)
+{
+	const double x1 = (x2 + x0) * 0.5;
+	const double f0 = F[0], df0 = F[1], f1 = F[2], f2 = F[3], df2 = F[4];
+	const double p = log(pow(x2, x2) / pow(x1, x1)) / log(x2 / x1) - log(pow(x1, x1) / pow(x0, x0)) / log(x1 / x0),
+		         q = (x2 - x1) / log(x2 / x1) - (x1 - x0) / log(x1 / x0),
+		         r = (x2 * x2 - x1 * x1) / log(x2 / x1) - (x1 * x1 - x0 * x0) / log(x1 / x0),
+		         s = log(f2 / f1) / log(x2 / x1) - log(f1 / f0) / log(x1 / x0);
+	
+	double alpha1, beta1, gamma1, alpha2, beta2, gamma2;
+	alpha1 = x0 * df0 / f0 - log(f1 / f0) / f(x1 / x0)
+				+ (s / p) * log(pow(x1, x1) / pow(x0, x0)) / log(x1 / x0)
+				- (s / p) * x0 * (1 + log(x0)),
+	beta1  = (q / p)* log(pow(x1, x1) / pow(x0, x0)) / log(x1 / x0)
+				- (x1 - x0) / log(x1 / x0)
+				- (q / p) * x0 * (1 + log(x0)) + x0, 
+	gamma1 = (r / p)* log(pow(x1, x1) / pow(x0, x0)) / log(x1 / x0)
+				- (x1 * x1 - x0 * x0) / log(x1 / x0)
+				- (r / p) * x0 * (1 + log(x0)) + 2 * x0 * x0, 
+	alpha2 = x2* df2 / f2 - log(f2 / f1) / f(x2 / x1)
+				+ (s / p) * log(pow(x2, x2) / pow(x1, x1)) / log(x2 / x1)
+				- (s / p) * x2 * (1 + log(x2)),
+	beta2  = (q / p)* log(pow(x2, x2) / pow(x1, x1)) / log(x2 / x1)
+				- (x2 - x1) / log(x2 / x1)
+				- (q / p) * x2 * (1 + log(x2)) + x2,
+	gamma2 = (r / p)* log(pow(x2, x2) / pow(x1, x1)) / log(x2 / x1)
+				- (x2 * x2 - x1 * x1) / log(x2 / x1)
+				- (r / p) * x2 * (1 + log(x2)) + 2 * x2 * x2;
+
+	double A, a1, a2, b1, b2; // A * x^(a1 + a2*x) * exp(b1*x + b2*x^2);
+
+	b2 = (beta1*alpha2 - beta2*alpha1) / (beta1*gamma2 - beta2*gamma1);
+	b1 = (alpha1 - gamma1*b2) / beta1;
+	a2 = s/p - b1 * (q/p) - b2 * (r/p);
+	a1 = log(f1/f0)/log(x1/x0) - a2*log(pow(x1,x1)/pow(x0,x0))/log(x1/x0)
+			- b1*(x1-x0)/log(x1/x0) - b2*(x1*x1-x0*x0)/log(x1/x0);
+	A = f0 * pow(x0, -(a1 + a2*x0)) * exp( -(b1*x0 + b2*x0*x0));
+	
+	out[0] = A;
+	out[1] = a1;
+	out[2] = a2;
+	out[3] = b1;
+	out[4] = b2;
+
+
+#ifndef _DEBUG
+	for (int i = 0; i < 5; i++)
+		if (isnan(out[i]) || isinf(out[i]))
+			return -1;
+#endif
+
+	return 0;
+}
+
+
 int HermGenPN(const double* f, const double x0, const double x2, const int count, double* out)
 {
 	const int odd = isodd(count);
@@ -370,18 +443,20 @@ int HermGen(function _f[], herm_params* hp, const double a, const double b, cons
 	// fflush(logger);
 	const double eps = nu * 1e-5;
 	static int (* const Gen[])(const double[], const double, const double, double*) = {
-		[powexp4] = HermGenPE4,
-		[powexp5] = HermGenPE5,
-		[poly4]   = HermGenPN4,
-		[poly5]   = HermGenPN5,
-		[exppow5] = HermGenEP5,
+		[powexp4]  = HermGenPE4,
+		[powexp5]  = HermGenPE5,
+		[poly4]    = HermGenPN4,
+		[poly5]    = HermGenPN5,
+		[exppow5]  = HermGenEP5,
+		[pow2exp2] = HermGenW22,
 	};
 	static double (* const link[])(const double, const double[]) = { 
-		[powexp4] = PE4,
-		[powexp5] = PE5,
-		[poly4]   = PN4,
-		[poly5]   = PN5,
-		[exppow5] = EP5,
+		[powexp4]  = PE4,
+		[powexp5]  = PE5,
+		[poly4]    = PN4,
+		[exppow5]  = EP5,
+		[poly5]    = PN5,
+		[pow2exp2] = W22,
 	};
 	// fprintf(logger, "2\r\n");
 	// fflush(logger);
