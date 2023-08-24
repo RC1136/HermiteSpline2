@@ -64,6 +64,20 @@ double dW22(const double x, const double A[5])
 }
 
 
+double W12(const double x, const double A[4])
+{
+	const double a = A[0], b = A[1], c = A[2], d = A[3];
+	return a * pow(x, b * x) * exp(c * x + d * x * x);
+}
+
+
+double dW12(const double x, const double A[4])
+{
+	const double a = A[0], b = A[1], c = A[2], d = A[3];
+	return W12(x, A) * (b * (log(x) + 1) + c + 2 * d * x);
+}
+
+
 //Поліном з count+1 параметрами 
 double Polynomial(const double x, const double* a, const int count) 
 {
@@ -121,6 +135,7 @@ double HermiteSpline(const herm_params hp, const double x, const char derivative
 			[poly5]    = PN5,
 			[exppow5]  = EP5,
 			[pow2exp2] = W22,
+			[pow1exp2] = W12,
 		},
 		{
 			[powexp4]  = dPE4,
@@ -129,6 +144,7 @@ double HermiteSpline(const herm_params hp, const double x, const char derivative
 			[poly5]    = dPN5,
 			[exppow5]  = dEP5,
 			[pow2exp2] = dW22,
+			[pow1exp2] = dW12,
 		},
 	};
 	if (x < hp.X[0] || x > hp.X[hp.link_count]) {
@@ -376,6 +392,48 @@ int HermGenW22(const double F[5], const double x0, const double x2, double* out)
 }
 
 
+//Обчислює параметри ланки W12
+int HermGenW12(const double F[4], const double x0, const double x1, double* out)
+{
+	const double f0 = F[0], df0 = F[1], f1 = F[2], df1 = F[3];
+	
+	double alpha1, beta1, gamma1, alpha2, beta2, gamma2;
+
+	double aux1, aux2;
+	aux1 = (log(x0) + 1) / log(pow(x0, x0) / pow(x1, x1));
+	aux2 = (log(x1) + 1) / log(pow(x0, x0) / pow(x1, x1));
+
+	alpha1 = df0/f0 + log(f0/f1) * aux1,
+	beta1  = (x0-x1) * aux1 + 1,
+	gamma1 = (x0*x0-x1*x1) * aux1 + 2*x0,
+	alpha2 = df0/f0 + log(f0/f1) * aux2,
+	beta2  = (x0-x1) * aux2 + 1,
+	gamma2 = (x0*x0-x1*x1) * aux2 + 2*x1;
+
+
+
+	double a, b, c, d; // a * x^(b*x) * exp(c*x + d*x^2);
+
+	d = (beta1 * alpha2 - beta2 * alpha1) / (beta1 * gamma2 - beta2 * gamma1);
+	c = (alpha1 - gamma1 * d) / beta1;
+	b = ( c*(x0-x1) + d*(x0*x0-x1*x1) - log(f0/f1) ) / log(pow(x0,x0) / pow(x1,x1));
+	a = f0 / (pow(x0, b*x0) * exp(c*x0 + d*x0*x0));
+
+	out[0] = a;
+	out[1] = b;
+	out[2] = c;
+	out[3] = d;
+
+#ifndef _DEBUG
+	for (int i = 0; i < 4; i++)
+		if (isnan(out[i]) || isinf(out[i]))
+			return -1;
+#endif
+
+	return 0;
+}
+
+
 int HermGenPN(const double* f, const double x0, const double x2, const int count, double* out)
 {
 	const int odd = isodd(count);
@@ -449,6 +507,7 @@ int HermGen(function _f[], herm_params* hp, const double a, const double b, cons
 		[poly5]    = HermGenPN5,
 		[exppow5]  = HermGenEP5,
 		[pow2exp2] = HermGenW22,
+		[pow1exp2] = HermGenW12,
 	};
 	static double (* const link[])(const double, const double[]) = { 
 		[powexp4]  = PE4,
@@ -457,6 +516,7 @@ int HermGen(function _f[], herm_params* hp, const double a, const double b, cons
 		[exppow5]  = EP5,
 		[poly5]    = PN5,
 		[pow2exp2] = W22,
+		[pow1exp2] = W12,
 	};
 	// fprintf(logger, "2\r\n");
 	// fflush(logger);

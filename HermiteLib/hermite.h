@@ -7,6 +7,7 @@ enum linktype {
 	poly5    = 4,
 	exppow5  = 5,
 	pow2exp2 = 6,
+	pow1exp2 = 7,
 	linktype_count
 };
 
@@ -41,6 +42,14 @@ double dPN4(const double x, const double a[4]);
 double PN5(const double x, const double a[5]);
 
 double dPN5(const double x, const double a[5]);
+
+double W22(const double x, const double a[5]);
+
+double dW22(const double x, const double a[5]);
+
+double W12(const double x, const double a[5]);
+
+double dW12(const double x, const double a[5]);
 
 double HermiteSpline(const herm_params hp, const double x, const char derivative);
 
