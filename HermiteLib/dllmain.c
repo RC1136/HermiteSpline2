@@ -10,14 +10,8 @@ herm_params __declspec(dllexport) _HermGen(int8_t funcnum, int8_t linknum, doubl
 	herm_params hp = { 0 };
 	hp.type = linknum;
 
-	if ((linknum == 1) || (linknum == 3))
-		hp.param_count = 4;
-	else
-		hp.param_count = 5;
-
 	function f[] = { funcs[funcnum], dfuncs[funcnum] };
 	HermGen(f, &hp, a, b, nu);
-
 
 	return hp;
 }

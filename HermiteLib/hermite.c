@@ -5,8 +5,17 @@
 
 #include <stdio.h>
 
+#define isodd(x) (x & 1)
 
-#define isodd(x) (x & 0b1)
+int param_count_map[] = {
+	[powexp4]  = 4,
+	[powexp5]  = 5,
+	[poly4]    = 4,
+	[poly5]    = 5,
+	[exppow5]  = 5,
+	[pow2exp2] = 5,
+	[pow1exp2] = 4,
+};
 
 //Степенево-експоненціальна ланка з чотирма параметрами
 double PE4(const double x, const double a[4])
@@ -346,8 +355,8 @@ int HermGenW22(const double F[5], const double x0, const double x2, double* out)
 		         r = (x2 * x2 - x1 * x1) / log(x2 / x1) - (x1 * x1 - x0 * x0) / log(x1 / x0),
 		         s = log(f2 / f1) / log(x2 / x1) - log(f1 / f0) / log(x1 / x0);
 	
-	double alpha1, beta1, gamma1, alpha2, beta2, gamma2;
-	alpha1 = x0 * df0 / f0 - log(f1 / f0) / f(x1 / x0)
+	long double alpha1, beta1, gamma1, alpha2, beta2, gamma2;
+	alpha1 = x0 * df0 / f0 - log(f1 / f0) / log(x1 / x0)
 				+ (s / p) * log(pow(x1, x1) / pow(x0, x0)) / log(x1 / x0)
 				- (s / p) * x0 * (1 + log(x0)),
 	beta1  = (q / p)* log(pow(x1, x1) / pow(x0, x0)) / log(x1 / x0)
@@ -356,7 +365,7 @@ int HermGenW22(const double F[5], const double x0, const double x2, double* out)
 	gamma1 = (r / p)* log(pow(x1, x1) / pow(x0, x0)) / log(x1 / x0)
 				- (x1 * x1 - x0 * x0) / log(x1 / x0)
 				- (r / p) * x0 * (1 + log(x0)) + 2 * x0 * x0, 
-	alpha2 = x2* df2 / f2 - log(f2 / f1) / f(x2 / x1)
+	alpha2 = x2* df2 / f2 - log(f2 / f1) / log(x2 / x1)
 				+ (s / p) * log(pow(x2, x2) / pow(x1, x1)) / log(x2 / x1)
 				- (s / p) * x2 * (1 + log(x2)),
 	beta2  = (q / p)* log(pow(x2, x2) / pow(x1, x1)) / log(x2 / x1)
@@ -403,12 +412,12 @@ int HermGenW12(const double F[4], const double x0, const double x1, double* out)
 	aux1 = (log(x0) + 1) / log(pow(x0, x0) / pow(x1, x1));
 	aux2 = (log(x1) + 1) / log(pow(x0, x0) / pow(x1, x1));
 
-	alpha1 = df0/f0 + log(f0/f1) * aux1,
-	beta1  = (x0-x1) * aux1 + 1,
-	gamma1 = (x0*x0-x1*x1) * aux1 + 2*x0,
-	alpha2 = df0/f0 + log(f0/f1) * aux2,
-	beta2  = (x0-x1) * aux2 + 1,
-	gamma2 = (x0*x0-x1*x1) * aux2 + 2*x1;
+	alpha1 = df0/f0 - log(f0/f1) * aux1,
+	beta1  = -(x0-x1) * aux1 + 1,
+	gamma1 = -(x0*x0-x1*x1) * aux1 + 2*x0,
+	alpha2 = df1/f1 - log(f0/f1) * aux2,
+	beta2  = -(x0-x1) * aux2 + 1,
+	gamma2 = -(x0*x0-x1*x1) * aux2 + 2*x1;
 
 
 
@@ -416,7 +425,7 @@ int HermGenW12(const double F[4], const double x0, const double x1, double* out)
 
 	d = (beta1 * alpha2 - beta2 * alpha1) / (beta1 * gamma2 - beta2 * gamma1);
 	c = (alpha1 - gamma1 * d) / beta1;
-	b = ( c*(x0-x1) + d*(x0*x0-x1*x1) - log(f0/f1) ) / log(pow(x0,x0) / pow(x1,x1));
+	b = (log(f0 / f1) - c*(x0-x1) - d*(x0*x0-x1*x1) ) / log(pow(x0,x0) / pow(x1,x1));
 	a = f0 / (pow(x0, b*x0) * exp(c*x0 + d*x0*x0));
 
 	out[0] = a;
@@ -520,6 +529,7 @@ int HermGen(function _f[], herm_params* hp, const double a, const double b, cons
 	};
 	// fprintf(logger, "2\r\n");
 	// fflush(logger);
+	hp->param_count = param_count_map[hp->type];
 
 	const int odd = isodd(hp->param_count),	//Чи к-сть параметрів непарна
 		linknum = hp->type;				//Тип ланки

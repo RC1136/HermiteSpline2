@@ -137,6 +137,14 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="icon.ico" />
+    <None Include="resource\W22.bmp" />
+    <None Include="resource\W12.bmp" />
+    <None Include="resource\Pl5.bmp" />
+    <None Include="resource\Pl4.bmp" />
+    <None Include="resource\icon.png" />
+    <None Include="resource\ES5.bmp" />
+    <None Include="resource\ES4.bmp" />
+    <None Include="resource\EP5.bmp" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

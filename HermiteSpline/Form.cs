@@ -29,6 +29,7 @@ namespace HermiteSpline
             tbtochart.Add(trackBar2, chart2);
             tbtochart.Add(trackBar3, chart3);
             tbtochart.Add(trackBar4, chart4);
+            comboBoxLinks.SelectedIndex = 0;
         }
 
         private void textBoxBorderA_Leave(object sender, EventArgs e)
@@ -132,7 +133,7 @@ namespace HermiteSpline
                 return;
             }
             sw.Stop();
-            richTextBoxOutputs.Text = sw.Elapsed.ToString() + '\n';
+            // richTextBoxOutputs.Text = sw.Elapsed.ToString() + '\n';
             this.Cursor = Cursors.AppStarting;
 
             dataGridViewParams.Columns["Column4"].Visible = s.param_count == 5;
@@ -191,34 +192,39 @@ namespace HermiteSpline
             this.Cursor = Cursors.Default;
         }
 
-        private void pictureBox_Click(object sender, EventArgs e)
+        private void comboBoxLinks_SelectedIndexChanged(object sender, EventArgs e)
         {
-            switch (((PictureBox)sender).Name)
+            switch (((ComboBox)sender).SelectedIndex + 1)
             {
-                case "pictureBoxSE4":
-                    radioButtonSE4.Checked = true;
+                case 1:
                     linknum = (int)linktype.powexp4;
+                    pictureBoxLink.Image = HermiteSpline.Properties.Resources.ES4;
                     break;
-                case "pictureBoxSE5":
-                    radioButtonSE5.Checked = true;
+                case 2:
                     linknum = (int)linktype.powexp5;
+                    pictureBoxLink.Image = HermiteSpline.Properties.Resources.ES5;
                     break;
-                case "pictureBoxPN4":
-                    radioButtonPN4.Checked = true;
+                case 3:
                     linknum = (int)linktype.poly4;
+                    pictureBoxLink.Image = HermiteSpline.Properties.Resources.Pl4;
                     break;
-                case "pictureBoxPN5":
-                    radioButtonPN5.Checked = true;
+                case 4:
                     linknum = (int)linktype.poly5;
+                    pictureBoxLink.Image = HermiteSpline.Properties.Resources.Pl5;
                     break;
-                case "pictureBoxEP5":
-                    radioButtonEP5.Checked = true;
+                case 5:
                     linknum = (int)linktype.exppow5;
+                    pictureBoxLink.Image = HermiteSpline.Properties.Resources.EP5;
+                    break;
+                case 6:
+                    linknum = (int)linktype.pow1exp2;
+                    pictureBoxLink.Image = HermiteSpline.Properties.Resources.W12;
+                    break;
+                case 7:
+                    linknum = (int)linktype.pow2exp2;
+                    pictureBoxLink.Image = HermiteSpline.Properties.Resources.W22;
                     break;
             }
         }
-
-
-
     }
 }

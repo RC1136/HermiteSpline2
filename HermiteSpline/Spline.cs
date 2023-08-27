@@ -9,11 +9,13 @@ namespace HermiteSpline
 {
     enum linktype
     {
-        powexp4 = 1,
-        powexp5 = 2,
-        poly4   = 3,
-        poly5   = 4,
-        exppow5 = 5,
+        powexp4  = 1,
+        powexp5  = 2,
+        poly4    = 3,
+        poly5    = 4,
+        exppow5  = 5,
+        pow1exp2 = 6,
+        pow2exp2 = 7,
     }
 
     internal class Spline

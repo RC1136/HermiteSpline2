@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
             System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
             System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
@@ -46,20 +45,12 @@
             System.Windows.Forms.DataVisualization.Charting.Legend legend4 = new System.Windows.Forms.DataVisualization.Charting.Legend();
             System.Windows.Forms.DataVisualization.Charting.Series series7 = new System.Windows.Forms.DataVisualization.Charting.Series();
             System.Windows.Forms.DataVisualization.Charting.Series series8 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.tableLayoutPanelSplitter = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutInputs = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutSplines = new System.Windows.Forms.TableLayoutPanel();
-            this.radioButtonEP5 = new System.Windows.Forms.RadioButton();
-            this.pictureBoxPN5 = new System.Windows.Forms.PictureBox();
-            this.pictureBoxPN4 = new System.Windows.Forms.PictureBox();
-            this.pictureBoxSE5 = new System.Windows.Forms.PictureBox();
-            this.radioButtonPN5 = new System.Windows.Forms.RadioButton();
-            this.radioButtonPN4 = new System.Windows.Forms.RadioButton();
-            this.radioButtonSE5 = new System.Windows.Forms.RadioButton();
-            this.radioButtonSE4 = new System.Windows.Forms.RadioButton();
-            this.pictureBoxSE4 = new System.Windows.Forms.PictureBox();
             this.labelSplines = new System.Windows.Forms.Label();
-            this.pictureBoxEP5 = new System.Windows.Forms.PictureBox();
+            this.comboBoxLinks = new System.Windows.Forms.ComboBox();
             this.tableLayoutFunctions = new System.Windows.Forms.TableLayoutPanel();
             this.labelFunction = new System.Windows.Forms.Label();
             this.comboBoxFunctions = new System.Windows.Forms.ComboBox();
@@ -110,14 +101,10 @@
             this.завантажитиЗToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.toolTipPos = new System.Windows.Forms.ToolTip(this.components);
+            this.pictureBoxLink = new System.Windows.Forms.PictureBox();
             this.tableLayoutPanelSplitter.SuspendLayout();
             this.tableLayoutInputs.SuspendLayout();
             this.tableLayoutSplines.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxPN5)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxPN4)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxSE5)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxSE4)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxEP5)).BeginInit();
             this.tableLayoutFunctions.SuspendLayout();
             this.tableLayoutBorErrEv.SuspendLayout();
             this.tableLayoutPanelEvalPoint.SuspendLayout();
@@ -142,6 +129,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.chart3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewParams)).BeginInit();
             this.menuStrip1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxLink)).BeginInit();
             this.SuspendLayout();
             // 
             // tableLayoutPanelSplitter
@@ -175,10 +163,10 @@
             this.tableLayoutInputs.MinimumSize = new System.Drawing.Size(51, 0);
             this.tableLayoutInputs.Name = "tableLayoutInputs";
             this.tableLayoutInputs.RowCount = 4;
-            this.tableLayoutInputs.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 192F));
-            this.tableLayoutInputs.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 80F));
-            this.tableLayoutInputs.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 115F));
-            this.tableLayoutInputs.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 73F));
+            this.tableLayoutInputs.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 103F));
+            this.tableLayoutInputs.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 69F));
+            this.tableLayoutInputs.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 107F));
+            this.tableLayoutInputs.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 181F));
             this.tableLayoutInputs.Size = new System.Drawing.Size(390, 513);
             this.tableLayoutInputs.TabIndex = 2;
             // 
@@ -188,142 +176,19 @@
             this.tableLayoutSplines.ColumnCount = 2;
             this.tableLayoutSplines.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 27F));
             this.tableLayoutSplines.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutSplines.Controls.Add(this.radioButtonEP5, 0, 5);
-            this.tableLayoutSplines.Controls.Add(this.pictureBoxPN5, 1, 4);
-            this.tableLayoutSplines.Controls.Add(this.pictureBoxPN4, 1, 3);
-            this.tableLayoutSplines.Controls.Add(this.pictureBoxSE5, 1, 2);
-            this.tableLayoutSplines.Controls.Add(this.radioButtonPN5, 0, 4);
-            this.tableLayoutSplines.Controls.Add(this.radioButtonPN4, 0, 3);
-            this.tableLayoutSplines.Controls.Add(this.radioButtonSE5, 0, 2);
-            this.tableLayoutSplines.Controls.Add(this.radioButtonSE4, 0, 1);
-            this.tableLayoutSplines.Controls.Add(this.pictureBoxSE4, 1, 1);
             this.tableLayoutSplines.Controls.Add(this.labelSplines, 1, 0);
-            this.tableLayoutSplines.Controls.Add(this.pictureBoxEP5, 1, 5);
+            this.tableLayoutSplines.Controls.Add(this.comboBoxLinks, 1, 1);
+            this.tableLayoutSplines.Controls.Add(this.pictureBoxLink, 1, 2);
             this.tableLayoutSplines.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutSplines.Location = new System.Drawing.Point(5, 5);
             this.tableLayoutSplines.Margin = new System.Windows.Forms.Padding(4);
             this.tableLayoutSplines.Name = "tableLayoutSplines";
-            this.tableLayoutSplines.RowCount = 6;
+            this.tableLayoutSplines.RowCount = 3;
             this.tableLayoutSplines.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 27F));
             this.tableLayoutSplines.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
             this.tableLayoutSplines.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.tableLayoutSplines.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.tableLayoutSplines.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.tableLayoutSplines.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.tableLayoutSplines.Size = new System.Drawing.Size(380, 184);
+            this.tableLayoutSplines.Size = new System.Drawing.Size(380, 95);
             this.tableLayoutSplines.TabIndex = 0;
-            // 
-            // radioButtonEP5
-            // 
-            this.radioButtonEP5.AutoSize = true;
-            this.radioButtonEP5.Dock = System.Windows.Forms.DockStyle.Right;
-            this.radioButtonEP5.Location = new System.Drawing.Point(8, 155);
-            this.radioButtonEP5.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
-            this.radioButtonEP5.Name = "radioButtonEP5";
-            this.radioButtonEP5.Size = new System.Drawing.Size(14, 25);
-            this.radioButtonEP5.TabIndex = 9;
-            this.radioButtonEP5.UseVisualStyleBackColor = true;
-            // 
-            // pictureBoxPN5
-            // 
-            this.pictureBoxPN5.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pictureBoxPN5.Image = ((System.Drawing.Image)(resources.GetObject("pictureBoxPN5.Image")));
-            this.pictureBoxPN5.Location = new System.Drawing.Point(32, 124);
-            this.pictureBoxPN5.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
-            this.pictureBoxPN5.Name = "pictureBoxPN5";
-            this.pictureBoxPN5.Size = new System.Drawing.Size(343, 23);
-            this.pictureBoxPN5.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBoxPN5.TabIndex = 7;
-            this.pictureBoxPN5.TabStop = false;
-            this.pictureBoxPN5.Click += new System.EventHandler(this.pictureBox_Click);
-            // 
-            // pictureBoxPN4
-            // 
-            this.pictureBoxPN4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pictureBoxPN4.Image = ((System.Drawing.Image)(resources.GetObject("pictureBoxPN4.Image")));
-            this.pictureBoxPN4.Location = new System.Drawing.Point(32, 93);
-            this.pictureBoxPN4.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
-            this.pictureBoxPN4.Name = "pictureBoxPN4";
-            this.pictureBoxPN4.Size = new System.Drawing.Size(343, 23);
-            this.pictureBoxPN4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBoxPN4.TabIndex = 6;
-            this.pictureBoxPN4.TabStop = false;
-            this.pictureBoxPN4.Click += new System.EventHandler(this.pictureBox_Click);
-            // 
-            // pictureBoxSE5
-            // 
-            this.pictureBoxSE5.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pictureBoxSE5.Image = ((System.Drawing.Image)(resources.GetObject("pictureBoxSE5.Image")));
-            this.pictureBoxSE5.InitialImage = null;
-            this.pictureBoxSE5.Location = new System.Drawing.Point(32, 62);
-            this.pictureBoxSE5.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
-            this.pictureBoxSE5.Name = "pictureBoxSE5";
-            this.pictureBoxSE5.Size = new System.Drawing.Size(343, 23);
-            this.pictureBoxSE5.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBoxSE5.TabIndex = 5;
-            this.pictureBoxSE5.TabStop = false;
-            this.pictureBoxSE5.Click += new System.EventHandler(this.pictureBox_Click);
-            // 
-            // radioButtonPN5
-            // 
-            this.radioButtonPN5.AutoSize = true;
-            this.radioButtonPN5.Dock = System.Windows.Forms.DockStyle.Right;
-            this.radioButtonPN5.Location = new System.Drawing.Point(8, 124);
-            this.radioButtonPN5.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
-            this.radioButtonPN5.Name = "radioButtonPN5";
-            this.radioButtonPN5.Size = new System.Drawing.Size(14, 23);
-            this.radioButtonPN5.TabIndex = 3;
-            this.radioButtonPN5.UseVisualStyleBackColor = true;
-            // 
-            // radioButtonPN4
-            // 
-            this.radioButtonPN4.AutoSize = true;
-            this.radioButtonPN4.Dock = System.Windows.Forms.DockStyle.Right;
-            this.radioButtonPN4.Location = new System.Drawing.Point(8, 93);
-            this.radioButtonPN4.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
-            this.radioButtonPN4.Name = "radioButtonPN4";
-            this.radioButtonPN4.Size = new System.Drawing.Size(14, 23);
-            this.radioButtonPN4.TabIndex = 2;
-            this.radioButtonPN4.UseVisualStyleBackColor = true;
-            // 
-            // radioButtonSE5
-            // 
-            this.radioButtonSE5.AutoSize = true;
-            this.radioButtonSE5.Dock = System.Windows.Forms.DockStyle.Right;
-            this.radioButtonSE5.Location = new System.Drawing.Point(8, 62);
-            this.radioButtonSE5.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
-            this.radioButtonSE5.Name = "radioButtonSE5";
-            this.radioButtonSE5.Size = new System.Drawing.Size(14, 23);
-            this.radioButtonSE5.TabIndex = 1;
-            this.radioButtonSE5.UseVisualStyleBackColor = true;
-            // 
-            // radioButtonSE4
-            // 
-            this.radioButtonSE4.AutoSize = true;
-            this.radioButtonSE4.Checked = true;
-            this.radioButtonSE4.Dock = System.Windows.Forms.DockStyle.Right;
-            this.radioButtonSE4.Location = new System.Drawing.Point(8, 31);
-            this.radioButtonSE4.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
-            this.radioButtonSE4.Name = "radioButtonSE4";
-            this.radioButtonSE4.Size = new System.Drawing.Size(14, 23);
-            this.radioButtonSE4.TabIndex = 0;
-            this.radioButtonSE4.TabStop = true;
-            this.radioButtonSE4.UseVisualStyleBackColor = true;
-            // 
-            // pictureBoxSE4
-            // 
-            this.pictureBoxSE4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pictureBoxSE4.Image = ((System.Drawing.Image)(resources.GetObject("pictureBoxSE4.Image")));
-            this.pictureBoxSE4.ImageLocation = "";
-            this.pictureBoxSE4.InitialImage = null;
-            this.pictureBoxSE4.Location = new System.Drawing.Point(32, 31);
-            this.pictureBoxSE4.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
-            this.pictureBoxSE4.Name = "pictureBoxSE4";
-            this.pictureBoxSE4.Size = new System.Drawing.Size(343, 23);
-            this.pictureBoxSE4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBoxSE4.TabIndex = 4;
-            this.pictureBoxSE4.TabStop = false;
-            this.pictureBoxSE4.Click += new System.EventHandler(this.pictureBox_Click);
             // 
             // labelSplines
             // 
@@ -337,18 +202,26 @@
             this.labelSplines.TabIndex = 8;
             this.labelSplines.Text = "Вигляд ланки";
             // 
-            // pictureBoxEP5
+            // comboBoxLinks
             // 
-            this.pictureBoxEP5.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pictureBoxEP5.Image = ((System.Drawing.Image)(resources.GetObject("pictureBoxEP5.Image")));
-            this.pictureBoxEP5.Location = new System.Drawing.Point(32, 155);
-            this.pictureBoxEP5.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
-            this.pictureBoxEP5.Name = "pictureBoxEP5";
-            this.pictureBoxEP5.Size = new System.Drawing.Size(343, 25);
-            this.pictureBoxEP5.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBoxEP5.TabIndex = 10;
-            this.pictureBoxEP5.TabStop = false;
-            this.pictureBoxEP5.Click += new System.EventHandler(this.pictureBox_Click);
+            this.comboBoxLinks.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBoxLinks.Font = new System.Drawing.Font("Consolas", 10F);
+            this.comboBoxLinks.FormattingEnabled = true;
+            this.comboBoxLinks.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.comboBoxLinks.Items.AddRange(new object[] {
+            "1. a[0]*x^(a[1]+a[2]*x)*exp(a[3]*x)",
+            "2. a[0]*x^(a[1]+a[2]*x+a[3]*x^2)*exp(a[4]*x)",
+            "3. a[0]+a[1]*x+a[2]*x^2+a[3]*x^3",
+            "4. a[0]+a[1]*x+a[2]*x^2+a[3]*x^3+a[4]*x^4",
+            "5. a[0]*x^(a[1])*exp(a[2]*x+a[3]*x^2+a[4]*x^3)",
+            "6. a[0]*x^(a[1]*x)*exp(a[2]*x+a[3]*x^2)",
+            "7. a[0]*x^(a[1]+a[2]*x)*exp(a[3]*x+a[4]*x^2)"});
+            this.comboBoxLinks.Location = new System.Drawing.Point(32, 31);
+            this.comboBoxLinks.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
+            this.comboBoxLinks.Name = "comboBoxLinks";
+            this.comboBoxLinks.Size = new System.Drawing.Size(343, 23);
+            this.comboBoxLinks.TabIndex = 9;
+            this.comboBoxLinks.SelectedIndexChanged += new System.EventHandler(this.comboBoxLinks_SelectedIndexChanged);
             // 
             // tableLayoutFunctions
             // 
@@ -358,13 +231,13 @@
             this.tableLayoutFunctions.Controls.Add(this.labelFunction, 1, 0);
             this.tableLayoutFunctions.Controls.Add(this.comboBoxFunctions, 1, 1);
             this.tableLayoutFunctions.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutFunctions.Location = new System.Drawing.Point(6, 198);
+            this.tableLayoutFunctions.Location = new System.Drawing.Point(6, 109);
             this.tableLayoutFunctions.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.tableLayoutFunctions.Name = "tableLayoutFunctions";
             this.tableLayoutFunctions.RowCount = 2;
             this.tableLayoutFunctions.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 26F));
             this.tableLayoutFunctions.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 32F));
-            this.tableLayoutFunctions.Size = new System.Drawing.Size(378, 72);
+            this.tableLayoutFunctions.Size = new System.Drawing.Size(378, 61);
             this.tableLayoutFunctions.TabIndex = 1;
             // 
             // labelFunction
@@ -408,10 +281,10 @@
             // tableLayoutBorErrEv
             // 
             this.tableLayoutBorErrEv.ColumnCount = 4;
-            this.tableLayoutBorErrEv.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 17.85714F));
-            this.tableLayoutBorErrEv.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 82.14286F));
-            this.tableLayoutBorErrEv.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 45F));
-            this.tableLayoutBorErrEv.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 212F));
+            this.tableLayoutBorErrEv.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 17.90123F));
+            this.tableLayoutBorErrEv.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 82.09876F));
+            this.tableLayoutBorErrEv.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 29F));
+            this.tableLayoutBorErrEv.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 193F));
             this.tableLayoutBorErrEv.Controls.Add(this.labelLinks, 3, 0);
             this.tableLayoutBorErrEv.Controls.Add(this.labelNu, 2, 1);
             this.tableLayoutBorErrEv.Controls.Add(this.labelBorders, 1, 0);
@@ -422,7 +295,7 @@
             this.tableLayoutBorErrEv.Controls.Add(this.textBoxNu, 3, 1);
             this.tableLayoutBorErrEv.Controls.Add(this.buttonEvalAll, 3, 2);
             this.tableLayoutBorErrEv.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutBorErrEv.Location = new System.Drawing.Point(6, 279);
+            this.tableLayoutBorErrEv.Location = new System.Drawing.Point(6, 179);
             this.tableLayoutBorErrEv.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.tableLayoutBorErrEv.Name = "tableLayoutBorErrEv";
             this.tableLayoutBorErrEv.RowCount = 3;
@@ -430,14 +303,14 @@
             this.tableLayoutBorErrEv.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 48.14815F));
             this.tableLayoutBorErrEv.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 51.85185F));
             this.tableLayoutBorErrEv.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
-            this.tableLayoutBorErrEv.Size = new System.Drawing.Size(378, 107);
+            this.tableLayoutBorErrEv.Size = new System.Drawing.Size(378, 99);
             this.tableLayoutBorErrEv.TabIndex = 2;
             // 
             // labelLinks
             // 
             this.labelLinks.AutoSize = true;
             this.labelLinks.Font = new System.Drawing.Font("Consolas", 12F);
-            this.labelLinks.Location = new System.Drawing.Point(170, 4);
+            this.labelLinks.Location = new System.Drawing.Point(189, 4);
             this.labelLinks.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.labelLinks.Name = "labelLinks";
             this.labelLinks.Size = new System.Drawing.Size(72, 18);
@@ -449,10 +322,10 @@
             this.labelNu.AutoSize = true;
             this.labelNu.Dock = System.Windows.Forms.DockStyle.Right;
             this.labelNu.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Italic);
-            this.labelNu.Location = new System.Drawing.Point(142, 30);
+            this.labelNu.Location = new System.Drawing.Point(161, 30);
             this.labelNu.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.labelNu.Name = "labelNu";
-            this.labelNu.Size = new System.Drawing.Size(18, 31);
+            this.labelNu.Size = new System.Drawing.Size(18, 27);
             this.labelNu.TabIndex = 8;
             this.labelNu.Text = "μ";
             // 
@@ -460,20 +333,20 @@
             // 
             this.labelBorders.AutoSize = true;
             this.labelBorders.Font = new System.Drawing.Font("Consolas", 12F);
-            this.labelBorders.Location = new System.Drawing.Point(26, 4);
+            this.labelBorders.Location = new System.Drawing.Point(32, 4);
             this.labelBorders.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.labelBorders.Name = "labelBorders";
-            this.labelBorders.Size = new System.Drawing.Size(81, 18);
+            this.labelBorders.Size = new System.Drawing.Size(99, 18);
             this.labelBorders.TabIndex = 5;
             this.labelBorders.Text = "Межі наближення";
             // 
             // textBoxBorderA
             // 
             this.textBoxBorderA.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textBoxBorderA.Location = new System.Drawing.Point(25, 30);
+            this.textBoxBorderA.Location = new System.Drawing.Point(31, 30);
             this.textBoxBorderA.Margin = new System.Windows.Forms.Padding(4);
             this.textBoxBorderA.Name = "textBoxBorderA";
-            this.textBoxBorderA.Size = new System.Drawing.Size(91, 26);
+            this.textBoxBorderA.Size = new System.Drawing.Size(120, 26);
             this.textBoxBorderA.TabIndex = 2;
             this.textBoxBorderA.Text = "1";
             this.textBoxBorderA.Leave += new System.EventHandler(this.textBoxBorderA_Leave);
@@ -481,10 +354,10 @@
             // textBoxBorderB
             // 
             this.textBoxBorderB.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textBoxBorderB.Location = new System.Drawing.Point(25, 69);
+            this.textBoxBorderB.Location = new System.Drawing.Point(31, 65);
             this.textBoxBorderB.Margin = new System.Windows.Forms.Padding(4);
             this.textBoxBorderB.Name = "textBoxBorderB";
-            this.textBoxBorderB.Size = new System.Drawing.Size(91, 26);
+            this.textBoxBorderB.Size = new System.Drawing.Size(120, 26);
             this.textBoxBorderB.TabIndex = 3;
             this.textBoxBorderB.Text = "7";
             this.textBoxBorderB.Leave += new System.EventHandler(this.textBoxBorderB_Leave);
@@ -496,7 +369,7 @@
             this.labelA.Location = new System.Drawing.Point(5, 30);
             this.labelA.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.labelA.Name = "labelA";
-            this.labelA.Size = new System.Drawing.Size(11, 19);
+            this.labelA.Size = new System.Drawing.Size(17, 19);
             this.labelA.TabIndex = 6;
             this.labelA.Text = "a";
             // 
@@ -504,16 +377,16 @@
             // 
             this.labelB.AutoSize = true;
             this.labelB.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Italic);
-            this.labelB.Location = new System.Drawing.Point(5, 69);
+            this.labelB.Location = new System.Drawing.Point(5, 65);
             this.labelB.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.labelB.Name = "labelB";
-            this.labelB.Size = new System.Drawing.Size(11, 19);
+            this.labelB.Size = new System.Drawing.Size(17, 19);
             this.labelB.TabIndex = 7;
             this.labelB.Text = "b";
             // 
             // textBoxNu
             // 
-            this.textBoxNu.Location = new System.Drawing.Point(169, 30);
+            this.textBoxNu.Location = new System.Drawing.Point(188, 30);
             this.textBoxNu.Margin = new System.Windows.Forms.Padding(4);
             this.textBoxNu.Name = "textBoxNu";
             this.textBoxNu.Size = new System.Drawing.Size(176, 26);
@@ -528,10 +401,10 @@
             this.buttonEvalAll.Cursor = System.Windows.Forms.Cursors.Default;
             this.buttonEvalAll.Dock = System.Windows.Forms.DockStyle.Right;
             this.buttonEvalAll.Font = new System.Drawing.Font("Consolas", 12F);
-            this.buttonEvalAll.Location = new System.Drawing.Point(266, 69);
+            this.buttonEvalAll.Location = new System.Drawing.Point(266, 65);
             this.buttonEvalAll.Margin = new System.Windows.Forms.Padding(4);
             this.buttonEvalAll.Name = "buttonEvalAll";
-            this.buttonEvalAll.Size = new System.Drawing.Size(108, 34);
+            this.buttonEvalAll.Size = new System.Drawing.Size(108, 30);
             this.buttonEvalAll.TabIndex = 6;
             this.buttonEvalAll.Text = "Побудувати";
             this.buttonEvalAll.UseVisualStyleBackColor = false;
@@ -545,12 +418,12 @@
             this.tableLayoutPanelEvalPoint.Controls.Add(this.tableLayoutPanelEvalSplitter, 1, 0);
             this.tableLayoutPanelEvalPoint.Controls.Add(this.labelEval, 0, 0);
             this.tableLayoutPanelEvalPoint.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanelEvalPoint.Location = new System.Drawing.Point(5, 395);
+            this.tableLayoutPanelEvalPoint.Location = new System.Drawing.Point(5, 287);
             this.tableLayoutPanelEvalPoint.Margin = new System.Windows.Forms.Padding(4);
             this.tableLayoutPanelEvalPoint.Name = "tableLayoutPanelEvalPoint";
             this.tableLayoutPanelEvalPoint.RowCount = 1;
             this.tableLayoutPanelEvalPoint.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanelEvalPoint.Size = new System.Drawing.Size(380, 113);
+            this.tableLayoutPanelEvalPoint.Size = new System.Drawing.Size(380, 221);
             this.tableLayoutPanelEvalPoint.TabIndex = 3;
             // 
             // tableLayoutPanelEvalSplitter
@@ -566,7 +439,7 @@
             this.tableLayoutPanelEvalSplitter.RowCount = 2;
             this.tableLayoutPanelEvalSplitter.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 31F));
             this.tableLayoutPanelEvalSplitter.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanelEvalSplitter.Size = new System.Drawing.Size(275, 113);
+            this.tableLayoutPanelEvalSplitter.Size = new System.Drawing.Size(275, 221);
             this.tableLayoutPanelEvalSplitter.TabIndex = 7;
             // 
             // tableLayoutPanelEvalOut
@@ -611,7 +484,7 @@
             this.richTextBoxOutputs.Location = new System.Drawing.Point(3, 34);
             this.richTextBoxOutputs.Name = "richTextBoxOutputs";
             this.richTextBoxOutputs.ReadOnly = true;
-            this.richTextBoxOutputs.Size = new System.Drawing.Size(269, 76);
+            this.richTextBoxOutputs.Size = new System.Drawing.Size(269, 184);
             this.richTextBoxOutputs.TabIndex = 1;
             this.richTextBoxOutputs.Text = "";
             // 
@@ -641,7 +514,7 @@
             // 
             this.splitContainer1.Panel2.Controls.Add(this.dataGridViewParams);
             this.splitContainer1.Size = new System.Drawing.Size(376, 513);
-            this.splitContainer1.SplitterDistance = 347;
+            this.splitContainer1.SplitterDistance = 346;
             this.splitContainer1.SplitterWidth = 5;
             this.splitContainer1.TabIndex = 3;
             // 
@@ -654,7 +527,7 @@
             this.tabControlPlots.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.tabControlPlots.Name = "tabControlPlots";
             this.tabControlPlots.SelectedIndex = 0;
-            this.tabControlPlots.Size = new System.Drawing.Size(376, 347);
+            this.tabControlPlots.Size = new System.Drawing.Size(376, 346);
             this.tabControlPlots.TabIndex = 6;
             // 
             // tabPageFunc
@@ -664,7 +537,7 @@
             this.tabPageFunc.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.tabPageFunc.Name = "tabPageFunc";
             this.tabPageFunc.Padding = new System.Windows.Forms.Padding(5, 4, 5, 4);
-            this.tabPageFunc.Size = new System.Drawing.Size(368, 315);
+            this.tabPageFunc.Size = new System.Drawing.Size(368, 314);
             this.tabPageFunc.TabIndex = 0;
             this.tabPageFunc.Text = "Графіки функцій";
             this.tabPageFunc.UseVisualStyleBackColor = true;
@@ -674,7 +547,7 @@
             this.tableLayoutCharts1.CellBorderStyle = System.Windows.Forms.TableLayoutPanelCellBorderStyle.Inset;
             this.tableLayoutCharts1.ColumnCount = 2;
             this.tableLayoutCharts1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutCharts1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 48F));
+            this.tableLayoutCharts1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 34F));
             this.tableLayoutCharts1.Controls.Add(this.chart2, 0, 1);
             this.tableLayoutCharts1.Controls.Add(this.trackBar2, 1, 1);
             this.tableLayoutCharts1.Controls.Add(this.trackBar1, 1, 0);
@@ -686,7 +559,7 @@
             this.tableLayoutCharts1.RowCount = 2;
             this.tableLayoutCharts1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutCharts1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutCharts1.Size = new System.Drawing.Size(358, 307);
+            this.tableLayoutCharts1.Size = new System.Drawing.Size(358, 306);
             this.tableLayoutCharts1.TabIndex = 0;
             // 
             // chart2
@@ -708,11 +581,13 @@
             chartArea1.Name = "ChartArea1";
             this.chart2.ChartAreas.Add(chartArea1);
             this.chart2.Dock = System.Windows.Forms.DockStyle.Fill;
+            legend1.Docking = System.Windows.Forms.DataVisualization.Charting.Docking.Bottom;
             legend1.Font = new System.Drawing.Font("Consolas", 10F);
             legend1.IsTextAutoFit = false;
-            legend1.LegendStyle = System.Windows.Forms.DataVisualization.Charting.LegendStyle.Column;
+            legend1.LegendStyle = System.Windows.Forms.DataVisualization.Charting.LegendStyle.Row;
+            legend1.MaximumAutoSize = 10F;
             legend1.Name = "Legend1";
-            legend1.TableStyle = System.Windows.Forms.DataVisualization.Charting.LegendTableStyle.Tall;
+            legend1.TableStyle = System.Windows.Forms.DataVisualization.Charting.LegendTableStyle.Wide;
             this.chart2.Legends.Add(legend1);
             this.chart2.Location = new System.Drawing.Point(7, 158);
             this.chart2.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
@@ -737,7 +612,7 @@
             series2.YValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.Double;
             this.chart2.Series.Add(series1);
             this.chart2.Series.Add(series2);
-            this.chart2.Size = new System.Drawing.Size(294, 143);
+            this.chart2.Size = new System.Drawing.Size(308, 142);
             this.chart2.TabIndex = 5;
             this.chart2.Text = "chart2";
             this.chart2.MouseMove += new System.Windows.Forms.MouseEventHandler(this.chart_MouseMove);
@@ -745,22 +620,22 @@
             // trackBar2
             // 
             this.trackBar2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.trackBar2.Location = new System.Drawing.Point(312, 158);
+            this.trackBar2.Location = new System.Drawing.Point(326, 158);
             this.trackBar2.Margin = new System.Windows.Forms.Padding(4);
             this.trackBar2.Name = "trackBar2";
             this.trackBar2.Orientation = System.Windows.Forms.Orientation.Vertical;
-            this.trackBar2.Size = new System.Drawing.Size(40, 143);
+            this.trackBar2.Size = new System.Drawing.Size(26, 142);
             this.trackBar2.TabIndex = 4;
             this.trackBar2.Scroll += new System.EventHandler(this.trackBar_Scroll);
             // 
             // trackBar1
             // 
             this.trackBar1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.trackBar1.Location = new System.Drawing.Point(312, 6);
+            this.trackBar1.Location = new System.Drawing.Point(326, 6);
             this.trackBar1.Margin = new System.Windows.Forms.Padding(4);
             this.trackBar1.Name = "trackBar1";
             this.trackBar1.Orientation = System.Windows.Forms.Orientation.Vertical;
-            this.trackBar1.Size = new System.Drawing.Size(40, 142);
+            this.trackBar1.Size = new System.Drawing.Size(26, 142);
             this.trackBar1.TabIndex = 3;
             this.trackBar1.Scroll += new System.EventHandler(this.trackBar_Scroll);
             // 
@@ -783,11 +658,14 @@
             chartArea2.Name = "ChartArea1";
             this.chart1.ChartAreas.Add(chartArea2);
             this.chart1.Dock = System.Windows.Forms.DockStyle.Fill;
+            legend2.BorderWidth = 0;
+            legend2.Docking = System.Windows.Forms.DataVisualization.Charting.Docking.Bottom;
             legend2.Font = new System.Drawing.Font("Consolas", 10F);
             legend2.IsTextAutoFit = false;
-            legend2.LegendStyle = System.Windows.Forms.DataVisualization.Charting.LegendStyle.Column;
+            legend2.LegendStyle = System.Windows.Forms.DataVisualization.Charting.LegendStyle.Row;
+            legend2.MaximumAutoSize = 10F;
             legend2.Name = "Legend1";
-            legend2.TableStyle = System.Windows.Forms.DataVisualization.Charting.LegendTableStyle.Tall;
+            legend2.TableStyle = System.Windows.Forms.DataVisualization.Charting.LegendTableStyle.Wide;
             this.chart1.Legends.Add(legend2);
             this.chart1.Location = new System.Drawing.Point(7, 6);
             this.chart1.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
@@ -808,7 +686,7 @@
             series4.Name = "S(A,x)";
             this.chart1.Series.Add(series3);
             this.chart1.Series.Add(series4);
-            this.chart1.Size = new System.Drawing.Size(294, 142);
+            this.chart1.Size = new System.Drawing.Size(308, 142);
             this.chart1.TabIndex = 0;
             this.chart1.Text = "chart1";
             this.chart1.MouseMove += new System.Windows.Forms.MouseEventHandler(this.chart_MouseMove);
@@ -816,11 +694,11 @@
             // tabPageDer
             // 
             this.tabPageDer.Controls.Add(this.tableLayoutPanel2);
-            this.tabPageDer.Location = new System.Drawing.Point(4, 22);
+            this.tabPageDer.Location = new System.Drawing.Point(4, 28);
             this.tabPageDer.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.tabPageDer.Name = "tabPageDer";
             this.tabPageDer.Padding = new System.Windows.Forms.Padding(5, 4, 5, 4);
-            this.tabPageDer.Size = new System.Drawing.Size(368, 305);
+            this.tabPageDer.Size = new System.Drawing.Size(368, 314);
             this.tabPageDer.TabIndex = 1;
             this.tabPageDer.Text = "Графіки похідних";
             this.tabPageDer.UseVisualStyleBackColor = true;
@@ -830,7 +708,7 @@
             this.tableLayoutPanel2.CellBorderStyle = System.Windows.Forms.TableLayoutPanelCellBorderStyle.Inset;
             this.tableLayoutPanel2.ColumnCount = 2;
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 48F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 35F));
             this.tableLayoutPanel2.Controls.Add(this.chart4, 0, 1);
             this.tableLayoutPanel2.Controls.Add(this.trackBar3, 1, 0);
             this.tableLayoutPanel2.Controls.Add(this.trackBar4, 1, 1);
@@ -843,7 +721,7 @@
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(358, 297);
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(358, 306);
             this.tableLayoutPanel2.TabIndex = 1;
             // 
             // chart4
@@ -865,13 +743,15 @@
             chartArea3.Name = "ChartArea1";
             this.chart4.ChartAreas.Add(chartArea3);
             this.chart4.Dock = System.Windows.Forms.DockStyle.Fill;
+            legend3.Docking = System.Windows.Forms.DataVisualization.Charting.Docking.Bottom;
             legend3.Font = new System.Drawing.Font("Consolas", 10F);
             legend3.IsTextAutoFit = false;
-            legend3.LegendStyle = System.Windows.Forms.DataVisualization.Charting.LegendStyle.Column;
+            legend3.LegendStyle = System.Windows.Forms.DataVisualization.Charting.LegendStyle.Row;
+            legend3.MaximumAutoSize = 10F;
             legend3.Name = "Legend1";
-            legend3.TableStyle = System.Windows.Forms.DataVisualization.Charting.LegendTableStyle.Tall;
+            legend3.TableStyle = System.Windows.Forms.DataVisualization.Charting.LegendTableStyle.Wide;
             this.chart4.Legends.Add(legend3);
-            this.chart4.Location = new System.Drawing.Point(7, 153);
+            this.chart4.Location = new System.Drawing.Point(7, 158);
             this.chart4.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.chart4.Name = "chart4";
             series5.BorderWidth = 2;
@@ -894,7 +774,7 @@
             series6.YValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.Double;
             this.chart4.Series.Add(series5);
             this.chart4.Series.Add(series6);
-            this.chart4.Size = new System.Drawing.Size(294, 138);
+            this.chart4.Size = new System.Drawing.Size(307, 142);
             this.chart4.TabIndex = 6;
             this.chart4.Text = "chart4";
             this.chart4.MouseMove += new System.Windows.Forms.MouseEventHandler(this.chart_MouseMove);
@@ -902,22 +782,22 @@
             // trackBar3
             // 
             this.trackBar3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.trackBar3.Location = new System.Drawing.Point(312, 6);
+            this.trackBar3.Location = new System.Drawing.Point(325, 6);
             this.trackBar3.Margin = new System.Windows.Forms.Padding(4);
             this.trackBar3.Name = "trackBar3";
             this.trackBar3.Orientation = System.Windows.Forms.Orientation.Vertical;
-            this.trackBar3.Size = new System.Drawing.Size(40, 137);
+            this.trackBar3.Size = new System.Drawing.Size(27, 142);
             this.trackBar3.TabIndex = 3;
             this.trackBar3.Scroll += new System.EventHandler(this.trackBar_Scroll);
             // 
             // trackBar4
             // 
             this.trackBar4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.trackBar4.Location = new System.Drawing.Point(312, 153);
+            this.trackBar4.Location = new System.Drawing.Point(325, 158);
             this.trackBar4.Margin = new System.Windows.Forms.Padding(4);
             this.trackBar4.Name = "trackBar4";
             this.trackBar4.Orientation = System.Windows.Forms.Orientation.Vertical;
-            this.trackBar4.Size = new System.Drawing.Size(40, 138);
+            this.trackBar4.Size = new System.Drawing.Size(27, 142);
             this.trackBar4.TabIndex = 4;
             this.trackBar4.Scroll += new System.EventHandler(this.trackBar_Scroll);
             // 
@@ -940,11 +820,13 @@
             chartArea4.Name = "ChartArea1";
             this.chart3.ChartAreas.Add(chartArea4);
             this.chart3.Dock = System.Windows.Forms.DockStyle.Fill;
+            legend4.Docking = System.Windows.Forms.DataVisualization.Charting.Docking.Bottom;
             legend4.Font = new System.Drawing.Font("Consolas", 10F);
             legend4.IsTextAutoFit = false;
-            legend4.LegendStyle = System.Windows.Forms.DataVisualization.Charting.LegendStyle.Column;
+            legend4.LegendStyle = System.Windows.Forms.DataVisualization.Charting.LegendStyle.Row;
+            legend4.MaximumAutoSize = 10F;
             legend4.Name = "Legend1";
-            legend4.TableStyle = System.Windows.Forms.DataVisualization.Charting.LegendTableStyle.Tall;
+            legend4.TableStyle = System.Windows.Forms.DataVisualization.Charting.LegendTableStyle.Wide;
             this.chart3.Legends.Add(legend4);
             this.chart3.Location = new System.Drawing.Point(7, 6);
             this.chart3.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
@@ -965,7 +847,7 @@
             series8.Name = "S`(A,x)";
             this.chart3.Series.Add(series7);
             this.chart3.Series.Add(series8);
-            this.chart3.Size = new System.Drawing.Size(294, 137);
+            this.chart3.Size = new System.Drawing.Size(307, 142);
             this.chart3.TabIndex = 5;
             this.chart3.Text = "chart3";
             this.chart3.MouseMove += new System.Windows.Forms.MouseEventHandler(this.chart_MouseMove);
@@ -989,7 +871,7 @@
             this.dataGridViewParams.Margin = new System.Windows.Forms.Padding(4);
             this.dataGridViewParams.Name = "dataGridViewParams";
             this.dataGridViewParams.ReadOnly = true;
-            this.dataGridViewParams.Size = new System.Drawing.Size(376, 161);
+            this.dataGridViewParams.Size = new System.Drawing.Size(376, 162);
             this.dataGridViewParams.TabIndex = 8;
             // 
             // Num
@@ -1109,6 +991,7 @@
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Padding = new System.Windows.Forms.Padding(8, 3, 0, 3);
+            this.menuStrip1.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
             this.menuStrip1.Size = new System.Drawing.Size(784, 25);
             this.menuStrip1.TabIndex = 1;
             this.menuStrip1.Text = "menuStrip1";
@@ -1118,6 +1001,18 @@
             // 
             this.toolTipPos.UseAnimation = false;
             this.toolTipPos.UseFading = false;
+            // 
+            // pictureBoxLink
+            // 
+            this.pictureBoxLink.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pictureBoxLink.Image = global::HermiteSpline.Properties.Resources.ES4;
+            this.pictureBoxLink.InitialImage = null;
+            this.pictureBoxLink.Location = new System.Drawing.Point(30, 64);
+            this.pictureBoxLink.Name = "pictureBoxLink";
+            this.pictureBoxLink.Size = new System.Drawing.Size(347, 28);
+            this.pictureBoxLink.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBoxLink.TabIndex = 10;
+            this.pictureBoxLink.TabStop = false;
             // 
             // Form1
             // 
@@ -1139,11 +1034,6 @@
             this.tableLayoutInputs.ResumeLayout(false);
             this.tableLayoutSplines.ResumeLayout(false);
             this.tableLayoutSplines.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxPN5)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxPN4)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxSE5)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxSE4)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxEP5)).EndInit();
             this.tableLayoutFunctions.ResumeLayout(false);
             this.tableLayoutFunctions.PerformLayout();
             this.tableLayoutBorErrEv.ResumeLayout(false);
@@ -1175,6 +1065,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewParams)).EndInit();
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxLink)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1185,14 +1076,6 @@
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanelSplitter;
         private System.Windows.Forms.TableLayoutPanel tableLayoutInputs;
         private System.Windows.Forms.TableLayoutPanel tableLayoutSplines;
-        private System.Windows.Forms.PictureBox pictureBoxPN5;
-        private System.Windows.Forms.PictureBox pictureBoxPN4;
-        private System.Windows.Forms.PictureBox pictureBoxSE5;
-        private System.Windows.Forms.RadioButton radioButtonPN5;
-        private System.Windows.Forms.RadioButton radioButtonPN4;
-        private System.Windows.Forms.RadioButton radioButtonSE5;
-        private System.Windows.Forms.RadioButton radioButtonSE4;
-        private System.Windows.Forms.PictureBox pictureBoxSE4;
         private System.Windows.Forms.Label labelSplines;
         private System.Windows.Forms.TableLayoutPanel tableLayoutFunctions;
         private System.Windows.Forms.ComboBox comboBoxFunctions;
@@ -1244,8 +1127,8 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
-        private System.Windows.Forms.RadioButton radioButtonEP5;
-        private System.Windows.Forms.PictureBox pictureBoxEP5;
+        private System.Windows.Forms.ComboBox comboBoxLinks;
+        private System.Windows.Forms.PictureBox pictureBoxLink;
     }
 }
 
