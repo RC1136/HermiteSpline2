@@ -1,4 +1,9 @@
 
+#ifndef HERMITE_H
+#define HERMITE_H
+
+#include "float_def.h"
+
 //Вигляд ланки
 enum linktype {
 	powexp4  = 1,
@@ -17,42 +22,44 @@ typedef struct {
 	int link_count;	 //кількість ланок
 	double* A;		 //параметри сплайна (link_conut*param_count елементів)
 	double* X;		 //точки наближення (link_count+1 елементів)
-	void* A128;
-	void* X128;
+	myfloat_t* A128;
+	myfloat_t* X128;
 } herm_params;
 
-typedef double (*function)(const double);
+typedef myfloat_t(*function)(const myfloat_t);
 
-double PE4(const double x, const double a[4]);
+myfloat_t PE4(const myfloat_t x, const myfloat_t a[4]);
 
-double dPE4(const double x, const double a[4]);
+myfloat_t dPE4(const myfloat_t x, const myfloat_t a[4]);
 
-double PE5(const double x, const double a[5]);
+myfloat_t PE5(const myfloat_t x, const myfloat_t a[5]);
 
-double dPE5(const double x, const double a[5]);
+myfloat_t dPE5(const myfloat_t x, const myfloat_t a[5]);
 
-double EP5(const double x, const double a[5]);
+myfloat_t EP5(const myfloat_t x, const myfloat_t a[5]);
 
-double dEP5(const double x, const double a[5]);
+myfloat_t dEP5(const myfloat_t x, const myfloat_t a[5]);
 
-double PN4(const double x, const double a[4]);
+myfloat_t PN4(const myfloat_t x, const myfloat_t a[4]);
 
-double dPN4(const double x, const double a[4]);
+myfloat_t dPN4(const myfloat_t x, const myfloat_t a[4]);
 
-double PN5(const double x, const double a[5]);
+myfloat_t PN5(const myfloat_t x, const myfloat_t a[5]);
 
-double dPN5(const double x, const double a[5]);
+myfloat_t dPN5(const myfloat_t x, const myfloat_t a[5]);
 
-double W22(const double x, const double a[5]);
+myfloat_t W22(const myfloat_t x, const myfloat_t a[5]);
 
-double dW22(const double x, const double a[5]);
+myfloat_t dW22(const myfloat_t x, const myfloat_t a[5]);
 
-double W12(const double x, const double a[4]);
+myfloat_t W12(const myfloat_t x, const myfloat_t a[4]);
 
-double dW12(const double x, const double a[4]);
+myfloat_t dW12(const myfloat_t x, const myfloat_t a[4]);
 
-double HermiteSpline(const herm_params hp, const double x, const char derivative);
+myfloat_t HermiteSpline(const herm_params hp, const myfloat_t x, const char derivative);
 
-int HermGen(function _f[], herm_params* hp, const double a, const double b, const double nu);
+int HermGen(function _f[], herm_params* hp, const myfloat_t a, const myfloat_t b, const myfloat_t nu);
 
-double finderr(double (*link)(const double, const double[]), const double params[], function f, const double from, const double to);
+myfloat_t finderr(myfloat_t (*link)(const myfloat_t, const myfloat_t[]), const myfloat_t params[], function f, const myfloat_t from, const myfloat_t to);
+
+#endif

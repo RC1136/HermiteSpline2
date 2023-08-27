@@ -147,6 +147,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="float_def.h" />
     <ClInclude Include="functions.h" />
     <ClInclude Include="hermite.h" />
   </ItemGroup>

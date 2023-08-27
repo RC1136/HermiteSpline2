@@ -2,6 +2,7 @@
 #include <stdint.h>
 #include <stdlib.h>
 #include <math.h>
+#include "float_def.h"
 #include "hermite.h"
 #include "functions.h"
 
@@ -11,37 +12,49 @@ herm_params __declspec(dllexport) _HermGen(int8_t funcnum, int8_t linknum, doubl
 	hp.type = linknum;
 
 	function f[] = { funcs[funcnum], dfuncs[funcnum] };
-	HermGen(f, &hp, a, b, nu);
-
+	int err = HermGen(f, &hp, (myfloat_t)a, (myfloat_t)b, (myfloat_t)nu);
+	if (err != 0) {
+		hp.type = 0;
+	}
 	return hp;
 }
 
 void __declspec(dllexport) _free(herm_params hp)
 {
 	free(hp.A);
+	free(hp.A128);
 	free(hp.X);
+	free(hp.X128);
 }
 
 double __declspec(dllexport) _HermiteSpline(const herm_params hp, const double x, int8_t der)
 {
-	return HermiteSpline(hp, x, der);
+	if (hp.type == 0)
+	{
+		return -42.;
+	}
+	return (double)HermiteSpline(hp, (myfloat_t)x, der);
 }
 
 double __declspec(dllexport) _Func(const int8_t funcnum, const double x, int8_t der)
 {
-	return der ? dfuncs[funcnum](x) : funcs[funcnum](x);
+	return (double)(der ? dfuncs[funcnum]((myfloat_t)x) : funcs[funcnum]((myfloat_t)x));
 }
 
 double __declspec(dllexport) _MaxError(const herm_params hp, const int8_t funcnum, const double from, const double to)
 {
-	double res = 0.0;
+	if (hp.type == 0)
+	{
+		return -42.;
+	}
+	myfloat_t res = 0.0;
+	const myfloat_t step = ((myfloat_t)to - (myfloat_t)from) / ((myfloat_t)0xFFFF);
 	for (int i = 0; i < 0xFFFF; i++) {
-		const double step = (to - from) / (0xFFFF);
-		double err = fabs(HermiteSpline(hp, from + step * i, 0) - funcs[funcnum](from + step * i));
+		myfloat_t err = fabs(HermiteSpline(hp, (myfloat_t)from + step * i, 0) - funcs[funcnum]((myfloat_t)from + step * i));
 		if (res < err)
 			res = err;
 	}
-	return res;
+	return (double)res;
 }
 
 BOOL APIENTRY DllMain(HMODULE hModule,

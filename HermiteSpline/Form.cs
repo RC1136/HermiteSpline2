@@ -13,8 +13,8 @@ namespace HermiteSpline
 {
     public partial class Form1 : System.Windows.Forms.Form
     {
-        double a = 1.0, b = 7.0, nu=1e-3;
-        int linknum = 1, funcnum = 4;
+        double a = 2.0, b = 7.0, nu=3000;
+        int linknum = 1, funcnum = 9;
         Spline s;
 
         Thread evaluating;
@@ -29,7 +29,8 @@ namespace HermiteSpline
             tbtochart.Add(trackBar2, chart2);
             tbtochart.Add(trackBar3, chart3);
             tbtochart.Add(trackBar4, chart4);
-            comboBoxLinks.SelectedIndex = 0;
+            comboBoxLinks.SelectedIndex = linknum - 1;
+            comboBoxFunctions.SelectedIndex = funcnum;
         }
 
         private void textBoxBorderA_Leave(object sender, EventArgs e)

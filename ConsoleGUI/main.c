@@ -4,8 +4,8 @@
 
 #include <Windows.h> // для SetConsoleOutputCP
 
-#include "HermiteLib/hermite.h"
-#include "HermiteLib/functions.h"
+#include "../HermiteLib/hermite.h"
+#include "../HermiteLib/functions.h"
 
 #define countof(x) ( sizeof(x) / sizeof(*(x)) )
 
@@ -63,12 +63,6 @@ int main(void)
 
 	herm_params hp = { 0 };
 	hp.type = linknum;
-
-	// Перепиши це, будь ласка
-	if ((linknum == 1) || (linknum == 3))
-		hp.param_count = 4;
-	else
-		hp.param_count = 5;
 
 	function f[] = { funcs[funcnum], dfuncs[funcnum]};
 	res = HermGen(f, &hp, a, b, nu);

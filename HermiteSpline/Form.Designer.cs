@@ -348,7 +348,7 @@
             this.textBoxBorderA.Name = "textBoxBorderA";
             this.textBoxBorderA.Size = new System.Drawing.Size(120, 26);
             this.textBoxBorderA.TabIndex = 2;
-            this.textBoxBorderA.Text = "1";
+            this.textBoxBorderA.Text = "2";
             this.textBoxBorderA.Leave += new System.EventHandler(this.textBoxBorderA_Leave);
             // 
             // textBoxBorderB
@@ -392,7 +392,7 @@
             this.textBoxNu.Size = new System.Drawing.Size(176, 26);
             this.textBoxNu.TabIndex = 0;
             this.textBoxNu.TabStop = false;
-            this.textBoxNu.Text = "0.001";
+            this.textBoxNu.Text = "0";
             this.textBoxNu.Leave += new System.EventHandler(this.textBoxNu_Leave);
             // 
             // buttonEvalAll
