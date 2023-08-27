@@ -21,6 +21,7 @@ extern myfloat_t testfunc10(const myfloat_t);
 extern myfloat_t testfunc11(const myfloat_t);
 extern myfloat_t testfunc12(const myfloat_t);
 extern myfloat_t testfunc13(const myfloat_t);
+extern myfloat_t testfunc14(const myfloat_t);
 extern myfloat_t testdf0(const myfloat_t);
 extern myfloat_t testdf1(const myfloat_t);
 extern myfloat_t testdf2(const myfloat_t);
@@ -35,6 +36,7 @@ extern myfloat_t testdf10(const myfloat_t);
 extern myfloat_t testdf11(const myfloat_t);
 extern myfloat_t testdf12(const myfloat_t);
 extern myfloat_t testdf13(const myfloat_t);
+extern myfloat_t testdf14(const myfloat_t);
 
 
 

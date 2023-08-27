@@ -151,7 +151,16 @@ myfloat_t testdf13(const myfloat_t _x)
 	return (-3 * _x * _x) / pow(_x * _x * _x + 1, 2);
 }
 
+myfloat_t testfunc14(const myfloat_t _x)
+{
+	return 1. / (1.0 + _x * _x);
+}
+
+myfloat_t testdf14(const myfloat_t _x)
+{
+	return (-2 * _x) / pow(_x * _x + 1., 2);
+}
 
 
-const function funcs[] = { testfunc0, testfunc1, testfunc2, testfunc3, testfunc4, testfunc5, testfunc6, testfunc7, testfunc8, testfunc9, testfunc10, testfunc11, testfunc12, testfunc13 };
-const function dfuncs[] = { testdf0, testdf1, testdf2, testdf3, testdf4, testdf5, testdf6, testdf7, testdf8, testdf9, testdf10, testdf11, testdf12, testdf13 };
+const function funcs[] =  { testfunc0, testfunc1, testfunc2, testfunc3, testfunc4, testfunc5, testfunc6, testfunc7, testfunc8, testfunc9, testfunc10, testfunc11, testfunc12, testfunc13, testfunc14 };
+const function dfuncs[] = { testdf0,   testdf1,   testdf2,   testdf3,   testdf4,   testdf5,   testdf6,   testdf7,   testdf8,   testdf9,   testdf10,   testdf11,   testdf12,   testdf13,   testdf14 };

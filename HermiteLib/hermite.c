@@ -93,14 +93,14 @@ myfloat_t dW22(const myfloat_t x, const myfloat_t A[5])
 myfloat_t W12(const myfloat_t x, const myfloat_t A[4])
 {
 	const myfloat_t a = A[0], b = A[1], c = A[2], d = A[3];
-	return a * pow(x, b * x) * exp(c * x + d * x * x);
+	return a * pow(x, b) * exp(c * x + d * x * x);
 }
 
 
 myfloat_t dW12(const myfloat_t x, const myfloat_t A[4])
 {
 	const myfloat_t a = A[0], b = A[1], c = A[2], d = A[3];
-	return W12(x, A) * (b * (log(x) + 1) + c + 2 * d * x);
+	return W12(x, A) * (b / x + c + 2 * d * x);
 }
 
 
@@ -295,7 +295,7 @@ int HermGenPE5(const myfloat_t f[5], const myfloat_t x0, const myfloat_t x2, myf
 	};
 
 	myfloat_t* mat[3] = { &matrix[0][0], &matrix[1][0], &matrix[2][0] };
-	SolveGauss((const myfloat_t**)&mat, vec, 3, out + 1); // => a[1], a[2], a[3] aka b, c, d
+	SolveGauss((const myfloat_t**)mat, vec, 3, out + 1); // => a[1], a[2], a[3] aka b, c, d
 
 	/*
 	out[4] = (log(f[2] / f[0]) -
@@ -438,8 +438,8 @@ int HermGenW12(const myfloat_t F[4], const myfloat_t x0, const myfloat_t x1, myf
 	myfloat_t alpha1, beta1, gamma1, alpha2, beta2, gamma2;
 
 	myfloat_t aux1, aux2;
-	aux1 = (log(x0) + 1) / log(pow(x0, x0) / pow(x1, x1));
-	aux2 = (log(x1) + 1) / log(pow(x0, x0) / pow(x1, x1));
+	aux1 = (1./x0) / log(x0/x1);
+	aux2 = (1./x1) / log(x0/x1);
 
 	alpha1 = df0/f0 - log(f0/f1) * aux1,
 	beta1  = -(x0-x1) * aux1 + 1,
@@ -449,13 +449,12 @@ int HermGenW12(const myfloat_t F[4], const myfloat_t x0, const myfloat_t x1, myf
 	gamma2 = -(x0*x0-x1*x1) * aux2 + 2*x1;
 
 
-
-	myfloat_t a, b, c, d; // a * x^(b*x) * exp(c*x + d*x^2);
+	myfloat_t a, b, c, d; // a * x^(b) * exp(c*x + d*x^2);
 
 	d = (beta1 * alpha2 - beta2 * alpha1) / (beta1 * gamma2 - beta2 * gamma1);
 	c = (alpha1 - gamma1 * d) / beta1;
-	b = (log(f0 / f1) - c*(x0-x1) - d*(x0*x0-x1*x1) ) / log(pow(x0,x0) / pow(x1,x1));
-	a = f0 / (pow(x0, b*x0) * exp(c*x0 + d*x0*x0));
+	b = (log(f0 / f1) - c*(x0-x1) - d*(x0*x0-x1*x1) ) / log(x0/x1);
+	a = f0 / (pow(x0, b) * exp(c*x0 + d*x0*x0));
 
 	out[0] = a;
 	out[1] = b;
@@ -496,11 +495,13 @@ int HermGenPN(const myfloat_t* f, const myfloat_t x0, const myfloat_t x2, const 
 			mat[2][i] = pow(x2, i);
 		}
 	}
-	SolveGauss((const myfloat_t**)&mat, f, count, out);
+	SolveGauss((const myfloat_t**)mat, f, count, out);
 
-	for (int i = 0; i < 4; i++)
+#ifndef _DEBUG
+	for (int i = 0; i < count; i++)
 		if (isnan(out[i]))
 			return -1;
+#endif
 
 	return 0;
 }
@@ -551,8 +552,8 @@ int HermGen(function _f[], herm_params* hp, const myfloat_t a, const myfloat_t b
 		[powexp4]  = PE4,
 		[powexp5]  = PE5,
 		[poly4]    = PN4,
-		[exppow5]  = EP5,
 		[poly5]    = PN5,
+		[exppow5]  = EP5,
 		[pow2exp2] = W22,
 		[pow1exp2] = W12,
 	};

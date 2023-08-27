@@ -214,7 +214,7 @@
             "3. a[0]+a[1]*x+a[2]*x^2+a[3]*x^3",
             "4. a[0]+a[1]*x+a[2]*x^2+a[3]*x^3+a[4]*x^4",
             "5. a[0]*x^(a[1])*exp(a[2]*x+a[3]*x^2+a[4]*x^3)",
-            "6. a[0]*x^(a[1]*x)*exp(a[2]*x+a[3]*x^2)",
+            "6. a[0]*x^(a[1])*exp(a[2]*x+a[3]*x^2)",
             "7. a[0]*x^(a[1]+a[2]*x)*exp(a[3]*x+a[4]*x^2)"});
             this.comboBoxLinks.Location = new System.Drawing.Point(32, 31);
             this.comboBoxLinks.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
@@ -270,7 +270,8 @@
             "10.  exp(sin(x)-cos(x))",
             "11.  exp(sin(x))+x",
             "12.  tg(x)",
-            "13.  1/(x^3+1)"});
+            "13.  1/(x^3+1)",
+            "14.   1/(1+x^2)"});
             this.comboBoxFunctions.Location = new System.Drawing.Point(30, 30);
             this.comboBoxFunctions.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.comboBoxFunctions.Name = "comboBoxFunctions";
@@ -284,7 +285,7 @@
             this.tableLayoutBorErrEv.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 17.90123F));
             this.tableLayoutBorErrEv.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 82.09876F));
             this.tableLayoutBorErrEv.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 29F));
-            this.tableLayoutBorErrEv.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 193F));
+            this.tableLayoutBorErrEv.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 195F));
             this.tableLayoutBorErrEv.Controls.Add(this.labelLinks, 3, 0);
             this.tableLayoutBorErrEv.Controls.Add(this.labelNu, 2, 1);
             this.tableLayoutBorErrEv.Controls.Add(this.labelBorders, 1, 0);
@@ -310,7 +311,7 @@
             // 
             this.labelLinks.AutoSize = true;
             this.labelLinks.Font = new System.Drawing.Font("Consolas", 12F);
-            this.labelLinks.Location = new System.Drawing.Point(189, 4);
+            this.labelLinks.Location = new System.Drawing.Point(187, 4);
             this.labelLinks.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.labelLinks.Name = "labelLinks";
             this.labelLinks.Size = new System.Drawing.Size(72, 18);
@@ -322,7 +323,7 @@
             this.labelNu.AutoSize = true;
             this.labelNu.Dock = System.Windows.Forms.DockStyle.Right;
             this.labelNu.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Italic);
-            this.labelNu.Location = new System.Drawing.Point(161, 30);
+            this.labelNu.Location = new System.Drawing.Point(159, 30);
             this.labelNu.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.labelNu.Name = "labelNu";
             this.labelNu.Size = new System.Drawing.Size(18, 27);
@@ -346,7 +347,7 @@
             this.textBoxBorderA.Location = new System.Drawing.Point(31, 30);
             this.textBoxBorderA.Margin = new System.Windows.Forms.Padding(4);
             this.textBoxBorderA.Name = "textBoxBorderA";
-            this.textBoxBorderA.Size = new System.Drawing.Size(120, 26);
+            this.textBoxBorderA.Size = new System.Drawing.Size(118, 26);
             this.textBoxBorderA.TabIndex = 2;
             this.textBoxBorderA.Text = "2";
             this.textBoxBorderA.Leave += new System.EventHandler(this.textBoxBorderA_Leave);
@@ -357,7 +358,7 @@
             this.textBoxBorderB.Location = new System.Drawing.Point(31, 65);
             this.textBoxBorderB.Margin = new System.Windows.Forms.Padding(4);
             this.textBoxBorderB.Name = "textBoxBorderB";
-            this.textBoxBorderB.Size = new System.Drawing.Size(120, 26);
+            this.textBoxBorderB.Size = new System.Drawing.Size(118, 26);
             this.textBoxBorderB.TabIndex = 3;
             this.textBoxBorderB.Text = "7";
             this.textBoxBorderB.Leave += new System.EventHandler(this.textBoxBorderB_Leave);
@@ -386,7 +387,7 @@
             // 
             // textBoxNu
             // 
-            this.textBoxNu.Location = new System.Drawing.Point(188, 30);
+            this.textBoxNu.Location = new System.Drawing.Point(186, 30);
             this.textBoxNu.Margin = new System.Windows.Forms.Padding(4);
             this.textBoxNu.Name = "textBoxNu";
             this.textBoxNu.Size = new System.Drawing.Size(176, 26);
@@ -547,7 +548,7 @@
             this.tableLayoutCharts1.CellBorderStyle = System.Windows.Forms.TableLayoutPanelCellBorderStyle.Inset;
             this.tableLayoutCharts1.ColumnCount = 2;
             this.tableLayoutCharts1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutCharts1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 34F));
+            this.tableLayoutCharts1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 38F));
             this.tableLayoutCharts1.Controls.Add(this.chart2, 0, 1);
             this.tableLayoutCharts1.Controls.Add(this.trackBar2, 1, 1);
             this.tableLayoutCharts1.Controls.Add(this.trackBar1, 1, 0);
@@ -612,7 +613,7 @@
             series2.YValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.Double;
             this.chart2.Series.Add(series1);
             this.chart2.Series.Add(series2);
-            this.chart2.Size = new System.Drawing.Size(308, 142);
+            this.chart2.Size = new System.Drawing.Size(304, 142);
             this.chart2.TabIndex = 5;
             this.chart2.Text = "chart2";
             this.chart2.MouseMove += new System.Windows.Forms.MouseEventHandler(this.chart_MouseMove);
@@ -620,22 +621,22 @@
             // trackBar2
             // 
             this.trackBar2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.trackBar2.Location = new System.Drawing.Point(326, 158);
+            this.trackBar2.Location = new System.Drawing.Point(322, 158);
             this.trackBar2.Margin = new System.Windows.Forms.Padding(4);
             this.trackBar2.Name = "trackBar2";
             this.trackBar2.Orientation = System.Windows.Forms.Orientation.Vertical;
-            this.trackBar2.Size = new System.Drawing.Size(26, 142);
+            this.trackBar2.Size = new System.Drawing.Size(30, 142);
             this.trackBar2.TabIndex = 4;
             this.trackBar2.Scroll += new System.EventHandler(this.trackBar_Scroll);
             // 
             // trackBar1
             // 
             this.trackBar1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.trackBar1.Location = new System.Drawing.Point(326, 6);
+            this.trackBar1.Location = new System.Drawing.Point(322, 6);
             this.trackBar1.Margin = new System.Windows.Forms.Padding(4);
             this.trackBar1.Name = "trackBar1";
             this.trackBar1.Orientation = System.Windows.Forms.Orientation.Vertical;
-            this.trackBar1.Size = new System.Drawing.Size(26, 142);
+            this.trackBar1.Size = new System.Drawing.Size(30, 142);
             this.trackBar1.TabIndex = 3;
             this.trackBar1.Scroll += new System.EventHandler(this.trackBar_Scroll);
             // 
@@ -686,7 +687,7 @@
             series4.Name = "S(A,x)";
             this.chart1.Series.Add(series3);
             this.chart1.Series.Add(series4);
-            this.chart1.Size = new System.Drawing.Size(308, 142);
+            this.chart1.Size = new System.Drawing.Size(304, 142);
             this.chart1.TabIndex = 0;
             this.chart1.Text = "chart1";
             this.chart1.MouseMove += new System.Windows.Forms.MouseEventHandler(this.chart_MouseMove);
@@ -708,7 +709,7 @@
             this.tableLayoutPanel2.CellBorderStyle = System.Windows.Forms.TableLayoutPanelCellBorderStyle.Inset;
             this.tableLayoutPanel2.ColumnCount = 2;
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 35F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 39F));
             this.tableLayoutPanel2.Controls.Add(this.chart4, 0, 1);
             this.tableLayoutPanel2.Controls.Add(this.trackBar3, 1, 0);
             this.tableLayoutPanel2.Controls.Add(this.trackBar4, 1, 1);
@@ -721,7 +722,7 @@
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(358, 306);
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(358, 312);
             this.tableLayoutPanel2.TabIndex = 1;
             // 
             // chart4
@@ -751,7 +752,7 @@
             legend3.Name = "Legend1";
             legend3.TableStyle = System.Windows.Forms.DataVisualization.Charting.LegendTableStyle.Wide;
             this.chart4.Legends.Add(legend3);
-            this.chart4.Location = new System.Drawing.Point(7, 158);
+            this.chart4.Location = new System.Drawing.Point(7, 161);
             this.chart4.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.chart4.Name = "chart4";
             series5.BorderWidth = 2;
@@ -774,7 +775,7 @@
             series6.YValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.Double;
             this.chart4.Series.Add(series5);
             this.chart4.Series.Add(series6);
-            this.chart4.Size = new System.Drawing.Size(307, 142);
+            this.chart4.Size = new System.Drawing.Size(303, 145);
             this.chart4.TabIndex = 6;
             this.chart4.Text = "chart4";
             this.chart4.MouseMove += new System.Windows.Forms.MouseEventHandler(this.chart_MouseMove);
@@ -782,22 +783,22 @@
             // trackBar3
             // 
             this.trackBar3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.trackBar3.Location = new System.Drawing.Point(325, 6);
+            this.trackBar3.Location = new System.Drawing.Point(321, 6);
             this.trackBar3.Margin = new System.Windows.Forms.Padding(4);
             this.trackBar3.Name = "trackBar3";
             this.trackBar3.Orientation = System.Windows.Forms.Orientation.Vertical;
-            this.trackBar3.Size = new System.Drawing.Size(27, 142);
+            this.trackBar3.Size = new System.Drawing.Size(31, 145);
             this.trackBar3.TabIndex = 3;
             this.trackBar3.Scroll += new System.EventHandler(this.trackBar_Scroll);
             // 
             // trackBar4
             // 
             this.trackBar4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.trackBar4.Location = new System.Drawing.Point(325, 158);
+            this.trackBar4.Location = new System.Drawing.Point(321, 161);
             this.trackBar4.Margin = new System.Windows.Forms.Padding(4);
             this.trackBar4.Name = "trackBar4";
             this.trackBar4.Orientation = System.Windows.Forms.Orientation.Vertical;
-            this.trackBar4.Size = new System.Drawing.Size(27, 142);
+            this.trackBar4.Size = new System.Drawing.Size(31, 145);
             this.trackBar4.TabIndex = 4;
             this.trackBar4.Scroll += new System.EventHandler(this.trackBar_Scroll);
             // 
@@ -847,7 +848,7 @@
             series8.Name = "S`(A,x)";
             this.chart3.Series.Add(series7);
             this.chart3.Series.Add(series8);
-            this.chart3.Size = new System.Drawing.Size(307, 142);
+            this.chart3.Size = new System.Drawing.Size(303, 145);
             this.chart3.TabIndex = 5;
             this.chart3.Text = "chart3";
             this.chart3.MouseMove += new System.Windows.Forms.MouseEventHandler(this.chart_MouseMove);

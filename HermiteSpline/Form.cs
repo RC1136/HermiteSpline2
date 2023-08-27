@@ -13,7 +13,7 @@ namespace HermiteSpline
 {
     public partial class Form1 : System.Windows.Forms.Form
     {
-        double a = 2.0, b = 7.0, nu=3000;
+        double a = 2.0, b = 7.0, nu=Double.PositiveInfinity;
         int linknum = 1, funcnum = 9;
         Spline s;
 
