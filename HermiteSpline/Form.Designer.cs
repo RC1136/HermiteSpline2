@@ -271,7 +271,7 @@
             "11.  exp(sin(x))+x",
             "12.  tg(x)",
             "13.  1/(x^3+1)",
-            "14.   1/(1+x^2)"});
+            "14.  1/(1+x^2)"});
             this.comboBoxFunctions.Location = new System.Drawing.Point(30, 30);
             this.comboBoxFunctions.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.comboBoxFunctions.Name = "comboBoxFunctions";

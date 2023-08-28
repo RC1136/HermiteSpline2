@@ -532,31 +532,35 @@ myfloat_t finderr(myfloat_t(*link)(const myfloat_t, const myfloat_t[]), const my
 }
 
 
+static int (* const Gen[])(const myfloat_t[], const myfloat_t, const myfloat_t, myfloat_t*) = {
+	[powexp4] = HermGenPE4,
+	[powexp5] = HermGenPE5,
+	[poly4] = HermGenPN4,
+	[poly5] = HermGenPN5,
+	[exppow5] = HermGenEP5,
+	[pow2exp2] = HermGenW22,
+	[pow1exp2] = HermGenW12,
+};
+
+static myfloat_t(* const link[])(const myfloat_t, const myfloat_t[]) = {
+	[powexp4] = PE4,
+	[powexp5] = PE5,
+	[poly4] = PN4,
+	[poly5] = PN5,
+	[exppow5] = EP5,
+	[pow2exp2] = W22,
+	[pow1exp2] = W12,
+};
+
+
 //Обчислює параметри сплайна з похибкою nu
 int HermGen(function _f[], herm_params* hp, const myfloat_t a, const myfloat_t b, const myfloat_t nu)
 {
-	logger = fopen("log.txt", "w+");
+	//logger = fopen("log.txt", "w+");
+	logger = stdout;
 	fprintf(logger, "1\r\n");
 	fflush(logger);
 	const myfloat_t eps = nu * 1e-5;
-	static int (* const Gen[])(const myfloat_t[], const myfloat_t, const myfloat_t, myfloat_t*) = {
-		[powexp4]  = HermGenPE4,
-		[powexp5]  = HermGenPE5,
-		[poly4]    = HermGenPN4,
-		[poly5]    = HermGenPN5,
-		[exppow5]  = HermGenEP5,
-		[pow2exp2] = HermGenW22,
-		[pow1exp2] = HermGenW12,
-	};
-	static myfloat_t(* const link[])(const myfloat_t, const myfloat_t[]) = {
-		[powexp4]  = PE4,
-		[powexp5]  = PE5,
-		[poly4]    = PN4,
-		[poly5]    = PN5,
-		[exppow5]  = EP5,
-		[pow2exp2] = W22,
-		[pow1exp2] = W12,
-	};
 	fprintf(logger, "2\r\n");
 	fflush(logger);
 	hp->param_count = param_count_map[hp->type];
@@ -682,6 +686,70 @@ int HermGen(function _f[], herm_params* hp, const myfloat_t a, const myfloat_t b
 	}
 	putchar('\n');
 
-	fclose(logger);
+	//fclose(logger);
 	return 0;
 }
+
+//Обчислює параметри сплайна з кількістю ланок r
+int HermGen2(function _f[], herm_params* hp, const myfloat_t a, const myfloat_t b, const int r)
+{
+	int res = 0;
+	myfloat_t nul = 0, nur = 0, nu = 0;
+	int k = 0;
+	const myfloat_t eps = 0.05;
+	myfloat_t* nui = NULL;
+
+step1:
+	nu = 1./r; // ???
+
+step2:
+	nul = nur = 0.;
+
+
+step3:
+	res = HermGen(_f, hp, a, b, nu);
+	if (res != 0)
+		return res;
+	k = hp->link_count;
+
+step4:
+
+	if (k == r)
+	{
+		int balanced = 1;
+		
+		const myfloat_t* params = &hp->A128[(k -1)*hp->param_count];
+		const myfloat_t from = hp->X128[(k-1)], to = hp->X128[k];
+		
+		//потрібно перевірити тільки останню ланку, бо на інших гарантовано похибка рівна nu
+		myfloat_t nui = finderr(link[hp->type], params, _f[0], from, to); 
+		
+		if (fabs((nui-nu)/nu) < eps) {
+			goto step7;
+		}
+	}
+
+step5:
+
+	if (k >= r) {
+		nul = nu;
+		nu = nur != 0 ? (nu+nur)/2 : nu*1.1;
+		goto step3;	//мав би перейти до пункту 4, виконавши пункт 3, тому йду в пункт 3
+	}
+
+step6:
+
+	if (k < r) //завжди істина, напевно...
+	{
+		nur = nu;
+		nu = nul != 0 ? (nu+nul)/2 : nu*0.9;
+		goto step3; //тут так само...
+	}
+
+step7:
+	//тут я мав би щось вивести але мені ліньки
+
+step8:
+	return res;
+}
+

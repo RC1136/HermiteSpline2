@@ -19,6 +19,19 @@ herm_params __declspec(dllexport) _HermGen(int8_t funcnum, int8_t linknum, doubl
 	return hp;
 }
 
+herm_params __declspec(dllexport) _HermGen2(int8_t funcnum, int8_t linknum, double a, double b, int32_t linkcount)
+{
+	herm_params hp = { 0 };
+	hp.type = linknum;
+
+	function f[] = { funcs[funcnum], dfuncs[funcnum] };
+	int err = HermGen2(f, &hp, (myfloat_t)a, (myfloat_t)b, (myfloat_t)linkcount);
+	if (err != 0) {
+		hp.type = 0;
+	}
+	return hp;
+}
+
 void __declspec(dllexport) _free(herm_params hp)
 {
 	free(hp.A);

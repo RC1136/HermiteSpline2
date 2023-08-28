@@ -60,6 +60,8 @@ myfloat_t HermiteSpline(const herm_params hp, const myfloat_t x, const char deri
 
 int HermGen(function _f[], herm_params* hp, const myfloat_t a, const myfloat_t b, const myfloat_t nu);
 
+int HermGen2(function _f[], herm_params* hp, const myfloat_t a, const myfloat_t b, const int r);
+
 myfloat_t finderr(myfloat_t (*link)(const myfloat_t, const myfloat_t[]), const myfloat_t params[], function f, const myfloat_t from, const myfloat_t to);
 
 #endif
