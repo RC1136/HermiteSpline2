@@ -234,32 +234,20 @@ int SolveGauss(const myfloat_t** a, const myfloat_t* b, const int count, myfloat
 //Обчислює параметри ланки PE4
 int HermGenPE4(const myfloat_t f[4], const myfloat_t x0, const myfloat_t x1, myfloat_t* out)
 {
-	fprintf(logger, "HermGenPE4: 1\r\n");
-	fflush(logger);
 	//див. notes10(3)
 	out[2] = (f[1] / f[0] - (log(f[0] / f[2]) / (x0 - x1)) - (1. / x0 - log(x0 / x1) / (x0 - x1)) * (f[1] / f[0] - f[3] / f[2]) / (1. / x0 - 1. / x1)) /
 		(1 + log(x0) - log(pow(x0, x0) / pow(x1, x1)) / (x0 - x1) - (log(x0 / x1) / (1 / x0 - 1 / x1)) * (1. / x0 - log(x0 / x1) / (x0 - x1)));
-	fprintf(logger, "HermGenPE4: 2\r\n");
-	fflush(logger);
 	out[1] = (f[1] / f[0] - f[3] / f[2] - out[2] * log(x0 / x1)) / (1. / x0 - 1. / x1);
-	fprintf(logger, "HermGenPE4: 3\r\n");
-	fflush(logger);
 	//out[3] = (log(f[0] / f[2]) - log(pow(x0, out[2] * x0 + out[1]) / pow(x1, out[2] * x1 + out[1]))) / (x0 - x1);
 	out[3] = (log(f[0] / f[2]) - out[2] * log(pow(x0, x0) / pow(x1, x1)) - out[1] * log(x0 / x1)) / (x0 - x1);
-	fprintf(logger, "HermGenPE4: 4\r\n");
-	fflush(logger);
 
 	out[0] = f[0] * pow(x0, -(out[2] * x0 + out[1])) * exp(-(out[3] * x0));
-	fprintf(logger, "HermGenPE4: 5\r\n");
-	fflush(logger);
 
 #ifndef _DEBUG
 	for (int i = 0; i < 4; i++)
 		if (isnan(out[i]) || isinf(out[i]))
 			return -1;
 #endif
-	fprintf(logger, "HermGenPE4: 6\r\n");
-	fflush(logger);
 	return 0;
 }
 
@@ -553,8 +541,44 @@ static myfloat_t(* const link[])(const myfloat_t, const myfloat_t[]) = {
 };
 
 
+int HermGen(function _f[], herm_params* hp, const myfloat_t a, const myfloat_t b)
+{
+	int errorcode = 0;
+	myfloat_t f[5] = { 0 };
+	int odd = 0;
+
+	hp->param_count = param_count_map[hp->type];
+	odd = isodd(hp->param_count);
+
+	if (hp->A == NULL) {  //Добре би було придумати якусь надійнішу перевірку
+		hp->A = calloc(sizeof(*hp->A), hp->param_count);
+		hp->X = calloc(sizeof(*hp->X), 2);
+		hp->A128 = calloc(sizeof(*hp->A128), hp->param_count);
+		hp->X128 = calloc(sizeof(*hp->X128), 2);
+	}
+
+	f[0] = _f[0](a);
+	f[1] = _f[1](a);
+	if (odd)
+		f[2] = _f[0]((a + b) / 2);
+	f[2 + odd] = _f[0](b);
+	f[3 + odd] = _f[1](b);
+
+	errorcode = Gen[hp->type](f, a, b, hp->A128);
+	if (errorcode)
+		return errorcode;	//Можливо таки треба буде пофіксити цей витік пам'яті
+
+	hp->X[0] = hp->X128[0] = a;
+	hp->X[1] = hp->X128[1] = b;
+
+	for(int i = 0; i < hp->param_count; i++)
+		hp->A[0] = hp->A128[0];
+
+	return 0;
+}
+
 //Обчислює параметри сплайна з похибкою nu
-int HermGen(function _f[], herm_params* hp, const myfloat_t a, const myfloat_t b, const myfloat_t nu)
+int HermGenNu(function _f[], herm_params* hp, const myfloat_t a, const myfloat_t b, const myfloat_t nu)
 {
 	//logger = fopen("log.txt", "w+");
 	logger = stdout;
@@ -691,23 +715,61 @@ int HermGen(function _f[], herm_params* hp, const myfloat_t a, const myfloat_t b
 }
 
 //Обчислює параметри сплайна з кількістю ланок r
-int HermGen2(function _f[], herm_params* hp, const myfloat_t a, const myfloat_t b, const int r)
+int HermGenR(function _f[], herm_params* hp, const myfloat_t a, const myfloat_t b, const int r)
 {
 	int res = 0;
 	myfloat_t nul = 0, nur = 0, nu = 0;
 	int k = 0;
 	const myfloat_t eps = 0.05;
-	myfloat_t* nui = NULL;
+	hp->param_count = param_count_map[hp->type];
+
 
 step1:
-	nu = 1./r; // ???
+#if 0
+	{
+		nul = (myfloat_t)INFINITY, nur = (myfloat_t)0;
 
+		myfloat_t f[5] = { 0 };
+		myfloat_t params[5] = { 0 };
+		int odd = isodd(hp->param_count);
+
+		for (int i = 0; i < r; i++) {
+
+			const myfloat_t delta = (b - a) / r;
+			const myfloat_t x0 = a + i * delta, x2 = a + (i + 1) * delta;
+			f[0] = _f[0](x0), f[1] = _f[1](x0);
+			if (odd) f[2] = _f[0]((x0 + x2) / 2);
+			f[2 + odd] = _f[0](x2), f[3 + odd] = _f[1](x2);
+
+			res = Gen[hp->type](f, x0, x2, params);
+			if (res < 0)
+				return res;
+
+			nu = finderr(link[hp->type], params, _f[0], x0, x2);
+
+			nul = min(nul, nu);
+		}
+
+		res = Gen[hp->type](f, a, b, params);
+		if (res < 0)
+			return res;
+		
+		nur = finderr(link[hp->type], params, _f[0], a, b);
+
+		// nu = 1./r; // ???
+
+	}
+#endif
+	nul = 1e-8;
+	nur = 42;
+
+	nu = (nul + nur) / 2.;
 step2:
-	nul = nur = 0.;
+	// nul = nur = 0.;
 
 
 step3:
-	res = HermGen(_f, hp, a, b, nu);
+	res = HermGenNu(_f, hp, a, b, nu);
 	if (res != 0)
 		return res;
 	k = hp->link_count;
@@ -716,16 +778,17 @@ step4:
 
 	if (k == r)
 	{
-		int balanced = 1;
-		
-		const myfloat_t* params = &hp->A128[(k -1)*hp->param_count];
+		const myfloat_t* params = &hp->A128[(k-1)*hp->param_count];
 		const myfloat_t from = hp->X128[(k-1)], to = hp->X128[k];
 		
 		//потрібно перевірити тільки останню ланку, бо на інших гарантовано похибка рівна nu
-		myfloat_t nui = finderr(link[hp->type], params, _f[0], from, to); 
+		myfloat_t nui = finderr(link[hp->type], params, _f[0], from, to);
 		
 		if (fabs((nui-nu)/nu) < eps) {
 			goto step7;
+		}
+		else {
+			goto step6;
 		}
 	}
 
@@ -733,17 +796,22 @@ step5:
 
 	if (k >= r) {
 		nul = nu;
-		nu = nur != 0 ? (nu+nur)/2 : nu*1.1;
+		// nu = nur != 0 ? (nu+nur)/2 : nu*1.1;
+		nu = (nu+nur)/2;
 		goto step3;	//мав би перейти до пункту 4, виконавши пункт 3, тому йду в пункт 3
 	}
 
 step6:
 
-	if (k < r) //завжди істина, напевно...
-	{
+	if (k <= r) { //завжди істина, напевно...
 		nur = nu;
-		nu = nul != 0 ? (nu+nul)/2 : nu*0.9;
+		// nu = nul != 0 ? (nu+nul)/2 : nu*0.9;
+		nu = (nu+nul)/2;
 		goto step3; //тут так само...
+	}
+	else
+	{
+		goto step5;
 	}
 
 step7:
@@ -751,5 +819,30 @@ step7:
 
 step8:
 	return res;
+}
+
+
+
+void HermClear(herm_params* hp)
+{
+	if (hp->A != NULL) {
+		free(hp->A);
+		hp->A = NULL;
+	}
+	if (hp->A128 != NULL) {
+		free(hp->A128);
+		hp->A128 = NULL;
+	}
+	if (hp->X != NULL) {
+		free(hp->X);
+		hp->X = NULL;
+	}
+	if (hp->X128 != NULL) {
+		free(hp->X128);
+		hp->X128 = NULL;
+	}
+	hp->link_count = 0;
+	hp->type = 0;
+	hp->param_count = 0;
 }
 

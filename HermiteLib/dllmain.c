@@ -6,26 +6,26 @@
 #include "hermite.h"
 #include "functions.h"
 
-herm_params __declspec(dllexport) _HermGen(int8_t funcnum, int8_t linknum, double a, double b, double nu)
+herm_params __declspec(dllexport) _HermGenNu(int8_t funcnum, int8_t linknum, double a, double b, double nu)
 {
 	herm_params hp = { 0 };
 	hp.type = linknum;
 
 	function f[] = { funcs[funcnum], dfuncs[funcnum] };
-	int err = HermGen(f, &hp, (myfloat_t)a, (myfloat_t)b, (myfloat_t)nu);
+	int err = HermGenNu(f, &hp, (myfloat_t)a, (myfloat_t)b, (myfloat_t)nu);
 	if (err != 0) {
 		hp.type = 0;
 	}
 	return hp;
 }
 
-herm_params __declspec(dllexport) _HermGen2(int8_t funcnum, int8_t linknum, double a, double b, int32_t linkcount)
+herm_params __declspec(dllexport) _HermGenR(int8_t funcnum, int8_t linknum, double a, double b, int32_t linkcount)
 {
 	herm_params hp = { 0 };
 	hp.type = linknum;
 
 	function f[] = { funcs[funcnum], dfuncs[funcnum] };
-	int err = HermGen2(f, &hp, (myfloat_t)a, (myfloat_t)b, (myfloat_t)linkcount);
+	int err = HermGenR(f, &hp, (myfloat_t)a, (myfloat_t)b, (int)linkcount);
 	if (err != 0) {
 		hp.type = 0;
 	}
@@ -34,10 +34,7 @@ herm_params __declspec(dllexport) _HermGen2(int8_t funcnum, int8_t linknum, doub
 
 void __declspec(dllexport) _free(herm_params hp)
 {
-	free(hp.A);
-	free(hp.A128);
-	free(hp.X);
-	free(hp.X128);
+	HermClear(&hp);
 }
 
 double __declspec(dllexport) _HermiteSpline(const herm_params hp, const double x, int8_t der)

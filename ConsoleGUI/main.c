@@ -12,6 +12,7 @@
 int main(void)
 {
 	SetConsoleOutputCP(1251);
+	int res = 0;
 
 	int linknum = 0;
 	printf("1. a[0] * x^(a[1] + a[2]*x) * exp(a[3]*x)              \n");
@@ -22,9 +23,9 @@ int main(void)
 
 	printf("¬ибер≥ть вигл€д ланки сплайна (введ≥ть число в≥д 1 до 5): ");
 
-	int res = scanf("%d", &linknum);
-	if (res < 1)
-		return -1;
+	res = scanf("%d", &linknum);
+	if (res == 0)
+		linknum = 1;
 
 	int funcnum = 0;
 	printf("0.  1x^(4x - 3) * exp(7x)         \n");
@@ -45,27 +46,34 @@ int main(void)
 	printf("¬ибер≥ть наближувану функц≥ю (введ≥ть число в≥д 0 до 13): ");
 
 	res = scanf("%d", &funcnum);
-	if (res < 1)
-		return -1;
+	if (res == 0)
+		funcnum = 9;
 
 	double a = 0., b = 0.;
 	printf("¬вед≥ть меж≥ наближенн€: ");
 	res = scanf("%lf%lf", &a, &b);
 	if (res < 2)
-		return -1;
+		a = 2., b = 7.;
 
-	double nu = 0.;
-	printf("¬вед≥ть точн≥сть наближенн€: ");
-	res = scanf("%lf", &nu);
 
+	// double nu = 0.;
+	// printf("¬вед≥ть точн≥сть наближенн€: ");
+	// res = scanf("%lf", &nu);
+	// if (res == 0)
+	// 	  nu = INFINITY;
+
+	int r = 0;
+	printf("¬вед≥ть к≥льк≥сть ланок: ");
+	res = scanf("%i", &r);
 	if (res == 0)
-		nu = INFINITY;
+		r = 1;
 
 	herm_params hp = { 0 };
 	hp.type = linknum;
 
 	function f[] = { funcs[funcnum], dfuncs[funcnum]};
-	res = HermGen(f, &hp, a, b, nu);
+	// res = HermGenNu(f, &hp, a, b, nu);
+	res = HermGenR(f, &hp, a, b, r);
 
 	if (res < 0) {
 		printf("HermGen failed...\n");

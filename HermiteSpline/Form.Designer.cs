@@ -51,19 +51,22 @@
             this.tableLayoutSplines = new System.Windows.Forms.TableLayoutPanel();
             this.labelSplines = new System.Windows.Forms.Label();
             this.comboBoxLinks = new System.Windows.Forms.ComboBox();
+            this.pictureBoxLink = new System.Windows.Forms.PictureBox();
             this.tableLayoutFunctions = new System.Windows.Forms.TableLayoutPanel();
             this.labelFunction = new System.Windows.Forms.Label();
             this.comboBoxFunctions = new System.Windows.Forms.ComboBox();
             this.tableLayoutBorErrEv = new System.Windows.Forms.TableLayoutPanel();
-            this.labelLinks = new System.Windows.Forms.Label();
-            this.labelNu = new System.Windows.Forms.Label();
+            this.labelNuOrR = new System.Windows.Forms.Label();
             this.labelBorders = new System.Windows.Forms.Label();
             this.textBoxBorderA = new System.Windows.Forms.TextBox();
             this.textBoxBorderB = new System.Windows.Forms.TextBox();
             this.labelA = new System.Windows.Forms.Label();
             this.labelB = new System.Windows.Forms.Label();
-            this.textBoxNu = new System.Windows.Forms.TextBox();
+            this.textBoxNuOrR = new System.Windows.Forms.TextBox();
             this.buttonEvalAll = new System.Windows.Forms.Button();
+            this.tableLayoutPanelNuOrLinks = new System.Windows.Forms.TableLayoutPanel();
+            this.radioButtonLinkCount = new System.Windows.Forms.RadioButton();
+            this.radioButtonNu = new System.Windows.Forms.RadioButton();
             this.tableLayoutPanelEvalPoint = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanelEvalSplitter = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanelEvalOut = new System.Windows.Forms.TableLayoutPanel();
@@ -94,19 +97,14 @@
             this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.toolStripMenuItem_File = new System.Windows.Forms.ToolStripMenuItem();
-            this.зберегтиToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.зберегтиЯкToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.завантажитиToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.завантажитиЗToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.toolTipPos = new System.Windows.Forms.ToolTip(this.components);
-            this.pictureBoxLink = new System.Windows.Forms.PictureBox();
             this.tableLayoutPanelSplitter.SuspendLayout();
             this.tableLayoutInputs.SuspendLayout();
             this.tableLayoutSplines.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxLink)).BeginInit();
             this.tableLayoutFunctions.SuspendLayout();
             this.tableLayoutBorErrEv.SuspendLayout();
+            this.tableLayoutPanelNuOrLinks.SuspendLayout();
             this.tableLayoutPanelEvalPoint.SuspendLayout();
             this.tableLayoutPanelEvalSplitter.SuspendLayout();
             this.tableLayoutPanelEvalOut.SuspendLayout();
@@ -128,8 +126,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.trackBar4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.chart3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewParams)).BeginInit();
-            this.menuStrip1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxLink)).BeginInit();
             this.SuspendLayout();
             // 
             // tableLayoutPanelSplitter
@@ -165,8 +161,8 @@
             this.tableLayoutInputs.RowCount = 4;
             this.tableLayoutInputs.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 103F));
             this.tableLayoutInputs.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 69F));
-            this.tableLayoutInputs.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 107F));
-            this.tableLayoutInputs.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 181F));
+            this.tableLayoutInputs.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 141F));
+            this.tableLayoutInputs.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 147F));
             this.tableLayoutInputs.Size = new System.Drawing.Size(390, 513);
             this.tableLayoutInputs.TabIndex = 2;
             // 
@@ -222,6 +218,18 @@
             this.comboBoxLinks.Size = new System.Drawing.Size(343, 23);
             this.comboBoxLinks.TabIndex = 9;
             this.comboBoxLinks.SelectedIndexChanged += new System.EventHandler(this.comboBoxLinks_SelectedIndexChanged);
+            // 
+            // pictureBoxLink
+            // 
+            this.pictureBoxLink.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pictureBoxLink.Image = global::HermiteSpline.Properties.Resources.ES4;
+            this.pictureBoxLink.InitialImage = null;
+            this.pictureBoxLink.Location = new System.Drawing.Point(30, 64);
+            this.pictureBoxLink.Name = "pictureBoxLink";
+            this.pictureBoxLink.Size = new System.Drawing.Size(347, 28);
+            this.pictureBoxLink.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBoxLink.TabIndex = 10;
+            this.pictureBoxLink.TabStop = false;
             // 
             // tableLayoutFunctions
             // 
@@ -282,72 +290,60 @@
             // tableLayoutBorErrEv
             // 
             this.tableLayoutBorErrEv.ColumnCount = 4;
-            this.tableLayoutBorErrEv.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 17.90123F));
-            this.tableLayoutBorErrEv.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 82.09876F));
-            this.tableLayoutBorErrEv.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 29F));
-            this.tableLayoutBorErrEv.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 195F));
-            this.tableLayoutBorErrEv.Controls.Add(this.labelLinks, 3, 0);
-            this.tableLayoutBorErrEv.Controls.Add(this.labelNu, 2, 1);
+            this.tableLayoutBorErrEv.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 23F));
+            this.tableLayoutBorErrEv.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 121F));
+            this.tableLayoutBorErrEv.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 28F));
+            this.tableLayoutBorErrEv.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 206F));
+            this.tableLayoutBorErrEv.Controls.Add(this.labelNuOrR, 2, 1);
             this.tableLayoutBorErrEv.Controls.Add(this.labelBorders, 1, 0);
             this.tableLayoutBorErrEv.Controls.Add(this.textBoxBorderA, 1, 1);
             this.tableLayoutBorErrEv.Controls.Add(this.textBoxBorderB, 1, 2);
             this.tableLayoutBorErrEv.Controls.Add(this.labelA, 0, 1);
             this.tableLayoutBorErrEv.Controls.Add(this.labelB, 0, 2);
-            this.tableLayoutBorErrEv.Controls.Add(this.textBoxNu, 3, 1);
+            this.tableLayoutBorErrEv.Controls.Add(this.textBoxNuOrR, 3, 1);
             this.tableLayoutBorErrEv.Controls.Add(this.buttonEvalAll, 3, 2);
+            this.tableLayoutBorErrEv.Controls.Add(this.tableLayoutPanelNuOrLinks, 3, 0);
             this.tableLayoutBorErrEv.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutBorErrEv.Location = new System.Drawing.Point(6, 179);
             this.tableLayoutBorErrEv.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.tableLayoutBorErrEv.Name = "tableLayoutBorErrEv";
             this.tableLayoutBorErrEv.RowCount = 3;
-            this.tableLayoutBorErrEv.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 26F));
-            this.tableLayoutBorErrEv.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 48.14815F));
-            this.tableLayoutBorErrEv.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 51.85185F));
-            this.tableLayoutBorErrEv.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
-            this.tableLayoutBorErrEv.Size = new System.Drawing.Size(378, 99);
+            this.tableLayoutBorErrEv.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 48F));
+            this.tableLayoutBorErrEv.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 36F));
+            this.tableLayoutBorErrEv.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 8F));
+            this.tableLayoutBorErrEv.Size = new System.Drawing.Size(378, 133);
             this.tableLayoutBorErrEv.TabIndex = 2;
             // 
-            // labelLinks
+            // labelNuOrR
             // 
-            this.labelLinks.AutoSize = true;
-            this.labelLinks.Font = new System.Drawing.Font("Consolas", 12F);
-            this.labelLinks.Location = new System.Drawing.Point(187, 4);
-            this.labelLinks.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
-            this.labelLinks.Name = "labelLinks";
-            this.labelLinks.Size = new System.Drawing.Size(72, 18);
-            this.labelLinks.TabIndex = 8;
-            this.labelLinks.Text = "Похибка";
-            // 
-            // labelNu
-            // 
-            this.labelNu.AutoSize = true;
-            this.labelNu.Dock = System.Windows.Forms.DockStyle.Right;
-            this.labelNu.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Italic);
-            this.labelNu.Location = new System.Drawing.Point(159, 30);
-            this.labelNu.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
-            this.labelNu.Name = "labelNu";
-            this.labelNu.Size = new System.Drawing.Size(18, 27);
-            this.labelNu.TabIndex = 8;
-            this.labelNu.Text = "μ";
+            this.labelNuOrR.AutoSize = true;
+            this.labelNuOrR.Dock = System.Windows.Forms.DockStyle.Right;
+            this.labelNuOrR.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Italic);
+            this.labelNuOrR.Location = new System.Drawing.Point(149, 52);
+            this.labelNuOrR.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
+            this.labelNuOrR.Name = "labelNuOrR";
+            this.labelNuOrR.Size = new System.Drawing.Size(18, 28);
+            this.labelNuOrR.TabIndex = 8;
+            this.labelNuOrR.Text = "μ";
             // 
             // labelBorders
             // 
             this.labelBorders.AutoSize = true;
             this.labelBorders.Font = new System.Drawing.Font("Consolas", 12F);
-            this.labelBorders.Location = new System.Drawing.Point(32, 4);
+            this.labelBorders.Location = new System.Drawing.Point(28, 4);
             this.labelBorders.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.labelBorders.Name = "labelBorders";
-            this.labelBorders.Size = new System.Drawing.Size(99, 18);
+            this.labelBorders.Size = new System.Drawing.Size(99, 38);
             this.labelBorders.TabIndex = 5;
             this.labelBorders.Text = "Межі наближення";
             // 
             // textBoxBorderA
             // 
             this.textBoxBorderA.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textBoxBorderA.Location = new System.Drawing.Point(31, 30);
+            this.textBoxBorderA.Location = new System.Drawing.Point(27, 52);
             this.textBoxBorderA.Margin = new System.Windows.Forms.Padding(4);
             this.textBoxBorderA.Name = "textBoxBorderA";
-            this.textBoxBorderA.Size = new System.Drawing.Size(118, 26);
+            this.textBoxBorderA.Size = new System.Drawing.Size(113, 26);
             this.textBoxBorderA.TabIndex = 2;
             this.textBoxBorderA.Text = "2";
             this.textBoxBorderA.Leave += new System.EventHandler(this.textBoxBorderA_Leave);
@@ -355,10 +351,10 @@
             // textBoxBorderB
             // 
             this.textBoxBorderB.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textBoxBorderB.Location = new System.Drawing.Point(31, 65);
+            this.textBoxBorderB.Location = new System.Drawing.Point(27, 88);
             this.textBoxBorderB.Margin = new System.Windows.Forms.Padding(4);
             this.textBoxBorderB.Name = "textBoxBorderB";
-            this.textBoxBorderB.Size = new System.Drawing.Size(118, 26);
+            this.textBoxBorderB.Size = new System.Drawing.Size(113, 26);
             this.textBoxBorderB.TabIndex = 3;
             this.textBoxBorderB.Text = "7";
             this.textBoxBorderB.Leave += new System.EventHandler(this.textBoxBorderB_Leave);
@@ -367,10 +363,10 @@
             // 
             this.labelA.AutoSize = true;
             this.labelA.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Italic);
-            this.labelA.Location = new System.Drawing.Point(5, 30);
+            this.labelA.Location = new System.Drawing.Point(5, 52);
             this.labelA.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.labelA.Name = "labelA";
-            this.labelA.Size = new System.Drawing.Size(17, 19);
+            this.labelA.Size = new System.Drawing.Size(13, 19);
             this.labelA.TabIndex = 6;
             this.labelA.Text = "a";
             // 
@@ -378,23 +374,23 @@
             // 
             this.labelB.AutoSize = true;
             this.labelB.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Italic);
-            this.labelB.Location = new System.Drawing.Point(5, 65);
+            this.labelB.Location = new System.Drawing.Point(5, 88);
             this.labelB.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.labelB.Name = "labelB";
-            this.labelB.Size = new System.Drawing.Size(17, 19);
+            this.labelB.Size = new System.Drawing.Size(13, 19);
             this.labelB.TabIndex = 7;
             this.labelB.Text = "b";
             // 
-            // textBoxNu
+            // textBoxNuOrR
             // 
-            this.textBoxNu.Location = new System.Drawing.Point(186, 30);
-            this.textBoxNu.Margin = new System.Windows.Forms.Padding(4);
-            this.textBoxNu.Name = "textBoxNu";
-            this.textBoxNu.Size = new System.Drawing.Size(176, 26);
-            this.textBoxNu.TabIndex = 0;
-            this.textBoxNu.TabStop = false;
-            this.textBoxNu.Text = "0";
-            this.textBoxNu.Leave += new System.EventHandler(this.textBoxNu_Leave);
+            this.textBoxNuOrR.Location = new System.Drawing.Point(176, 52);
+            this.textBoxNuOrR.Margin = new System.Windows.Forms.Padding(4);
+            this.textBoxNuOrR.Name = "textBoxNuOrR";
+            this.textBoxNuOrR.Size = new System.Drawing.Size(176, 26);
+            this.textBoxNuOrR.TabIndex = 0;
+            this.textBoxNuOrR.TabStop = false;
+            this.textBoxNuOrR.Text = "0";
+            this.textBoxNuOrR.Leave += new System.EventHandler(this.textBoxNuOrR_Leave);
             // 
             // buttonEvalAll
             // 
@@ -402,14 +398,56 @@
             this.buttonEvalAll.Cursor = System.Windows.Forms.Cursors.Default;
             this.buttonEvalAll.Dock = System.Windows.Forms.DockStyle.Right;
             this.buttonEvalAll.Font = new System.Drawing.Font("Consolas", 12F);
-            this.buttonEvalAll.Location = new System.Drawing.Point(266, 65);
+            this.buttonEvalAll.Location = new System.Drawing.Point(266, 88);
             this.buttonEvalAll.Margin = new System.Windows.Forms.Padding(4);
             this.buttonEvalAll.Name = "buttonEvalAll";
-            this.buttonEvalAll.Size = new System.Drawing.Size(108, 30);
+            this.buttonEvalAll.Size = new System.Drawing.Size(108, 41);
             this.buttonEvalAll.TabIndex = 6;
             this.buttonEvalAll.Text = "Побудувати";
             this.buttonEvalAll.UseVisualStyleBackColor = false;
             this.buttonEvalAll.Click += new System.EventHandler(this.buttonEvalAll_Click);
+            // 
+            // tableLayoutPanelNuOrLinks
+            // 
+            this.tableLayoutPanelNuOrLinks.ColumnCount = 2;
+            this.tableLayoutPanelNuOrLinks.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 124F));
+            this.tableLayoutPanelNuOrLinks.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 82F));
+            this.tableLayoutPanelNuOrLinks.Controls.Add(this.radioButtonLinkCount, 1, 0);
+            this.tableLayoutPanelNuOrLinks.Controls.Add(this.radioButtonNu, 0, 0);
+            this.tableLayoutPanelNuOrLinks.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanelNuOrLinks.Location = new System.Drawing.Point(172, 0);
+            this.tableLayoutPanelNuOrLinks.Margin = new System.Windows.Forms.Padding(0);
+            this.tableLayoutPanelNuOrLinks.Name = "tableLayoutPanelNuOrLinks";
+            this.tableLayoutPanelNuOrLinks.RowCount = 1;
+            this.tableLayoutPanelNuOrLinks.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanelNuOrLinks.Size = new System.Drawing.Size(206, 48);
+            this.tableLayoutPanelNuOrLinks.TabIndex = 9;
+            // 
+            // radioButtonLinkCount
+            // 
+            this.radioButtonLinkCount.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.radioButtonLinkCount.Location = new System.Drawing.Point(127, 3);
+            this.radioButtonLinkCount.Name = "radioButtonLinkCount";
+            this.radioButtonLinkCount.Size = new System.Drawing.Size(76, 42);
+            this.radioButtonLinkCount.TabIndex = 1;
+            this.radioButtonLinkCount.Text = "К-сть ланок";
+            this.radioButtonLinkCount.TextAlign = System.Drawing.ContentAlignment.TopLeft;
+            this.radioButtonLinkCount.UseVisualStyleBackColor = true;
+            this.radioButtonLinkCount.CheckedChanged += new System.EventHandler(this.radioButtonNuOrR_CheckedChanged);
+            // 
+            // radioButtonNu
+            // 
+            this.radioButtonNu.Checked = true;
+            this.radioButtonNu.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.radioButtonNu.Location = new System.Drawing.Point(3, 3);
+            this.radioButtonNu.Name = "radioButtonNu";
+            this.radioButtonNu.Size = new System.Drawing.Size(118, 42);
+            this.radioButtonNu.TabIndex = 0;
+            this.radioButtonNu.TabStop = true;
+            this.radioButtonNu.Text = "Похибка наближення";
+            this.radioButtonNu.TextAlign = System.Drawing.ContentAlignment.TopLeft;
+            this.radioButtonNu.UseVisualStyleBackColor = true;
+            this.radioButtonNu.CheckedChanged += new System.EventHandler(this.radioButtonNuOrR_CheckedChanged);
             // 
             // tableLayoutPanelEvalPoint
             // 
@@ -419,12 +457,12 @@
             this.tableLayoutPanelEvalPoint.Controls.Add(this.tableLayoutPanelEvalSplitter, 1, 0);
             this.tableLayoutPanelEvalPoint.Controls.Add(this.labelEval, 0, 0);
             this.tableLayoutPanelEvalPoint.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanelEvalPoint.Location = new System.Drawing.Point(5, 287);
+            this.tableLayoutPanelEvalPoint.Location = new System.Drawing.Point(5, 321);
             this.tableLayoutPanelEvalPoint.Margin = new System.Windows.Forms.Padding(4);
             this.tableLayoutPanelEvalPoint.Name = "tableLayoutPanelEvalPoint";
             this.tableLayoutPanelEvalPoint.RowCount = 1;
             this.tableLayoutPanelEvalPoint.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanelEvalPoint.Size = new System.Drawing.Size(380, 221);
+            this.tableLayoutPanelEvalPoint.Size = new System.Drawing.Size(380, 187);
             this.tableLayoutPanelEvalPoint.TabIndex = 3;
             // 
             // tableLayoutPanelEvalSplitter
@@ -440,7 +478,7 @@
             this.tableLayoutPanelEvalSplitter.RowCount = 2;
             this.tableLayoutPanelEvalSplitter.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 31F));
             this.tableLayoutPanelEvalSplitter.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanelEvalSplitter.Size = new System.Drawing.Size(275, 221);
+            this.tableLayoutPanelEvalSplitter.Size = new System.Drawing.Size(275, 187);
             this.tableLayoutPanelEvalSplitter.TabIndex = 7;
             // 
             // tableLayoutPanelEvalOut
@@ -485,7 +523,7 @@
             this.richTextBoxOutputs.Location = new System.Drawing.Point(3, 34);
             this.richTextBoxOutputs.Name = "richTextBoxOutputs";
             this.richTextBoxOutputs.ReadOnly = true;
-            this.richTextBoxOutputs.Size = new System.Drawing.Size(269, 184);
+            this.richTextBoxOutputs.Size = new System.Drawing.Size(269, 150);
             this.richTextBoxOutputs.TabIndex = 1;
             this.richTextBoxOutputs.Text = "";
             // 
@@ -548,7 +586,7 @@
             this.tableLayoutCharts1.CellBorderStyle = System.Windows.Forms.TableLayoutPanelCellBorderStyle.Inset;
             this.tableLayoutCharts1.ColumnCount = 2;
             this.tableLayoutCharts1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutCharts1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 38F));
+            this.tableLayoutCharts1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 42F));
             this.tableLayoutCharts1.Controls.Add(this.chart2, 0, 1);
             this.tableLayoutCharts1.Controls.Add(this.trackBar2, 1, 1);
             this.tableLayoutCharts1.Controls.Add(this.trackBar1, 1, 0);
@@ -613,7 +651,7 @@
             series2.YValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.Double;
             this.chart2.Series.Add(series1);
             this.chart2.Series.Add(series2);
-            this.chart2.Size = new System.Drawing.Size(304, 142);
+            this.chart2.Size = new System.Drawing.Size(300, 142);
             this.chart2.TabIndex = 5;
             this.chart2.Text = "chart2";
             this.chart2.MouseMove += new System.Windows.Forms.MouseEventHandler(this.chart_MouseMove);
@@ -621,22 +659,22 @@
             // trackBar2
             // 
             this.trackBar2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.trackBar2.Location = new System.Drawing.Point(322, 158);
+            this.trackBar2.Location = new System.Drawing.Point(318, 158);
             this.trackBar2.Margin = new System.Windows.Forms.Padding(4);
             this.trackBar2.Name = "trackBar2";
             this.trackBar2.Orientation = System.Windows.Forms.Orientation.Vertical;
-            this.trackBar2.Size = new System.Drawing.Size(30, 142);
+            this.trackBar2.Size = new System.Drawing.Size(34, 142);
             this.trackBar2.TabIndex = 4;
             this.trackBar2.Scroll += new System.EventHandler(this.trackBar_Scroll);
             // 
             // trackBar1
             // 
             this.trackBar1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.trackBar1.Location = new System.Drawing.Point(322, 6);
+            this.trackBar1.Location = new System.Drawing.Point(318, 6);
             this.trackBar1.Margin = new System.Windows.Forms.Padding(4);
             this.trackBar1.Name = "trackBar1";
             this.trackBar1.Orientation = System.Windows.Forms.Orientation.Vertical;
-            this.trackBar1.Size = new System.Drawing.Size(30, 142);
+            this.trackBar1.Size = new System.Drawing.Size(34, 142);
             this.trackBar1.TabIndex = 3;
             this.trackBar1.Scroll += new System.EventHandler(this.trackBar_Scroll);
             // 
@@ -687,7 +725,7 @@
             series4.Name = "S(A,x)";
             this.chart1.Series.Add(series3);
             this.chart1.Series.Add(series4);
-            this.chart1.Size = new System.Drawing.Size(304, 142);
+            this.chart1.Size = new System.Drawing.Size(300, 142);
             this.chart1.TabIndex = 0;
             this.chart1.Text = "chart1";
             this.chart1.MouseMove += new System.Windows.Forms.MouseEventHandler(this.chart_MouseMove);
@@ -695,11 +733,11 @@
             // tabPageDer
             // 
             this.tabPageDer.Controls.Add(this.tableLayoutPanel2);
-            this.tabPageDer.Location = new System.Drawing.Point(4, 28);
+            this.tabPageDer.Location = new System.Drawing.Point(4, 22);
             this.tabPageDer.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.tabPageDer.Name = "tabPageDer";
             this.tabPageDer.Padding = new System.Windows.Forms.Padding(5, 4, 5, 4);
-            this.tabPageDer.Size = new System.Drawing.Size(368, 314);
+            this.tabPageDer.Size = new System.Drawing.Size(368, 320);
             this.tabPageDer.TabIndex = 1;
             this.tabPageDer.Text = "Графіки похідних";
             this.tabPageDer.UseVisualStyleBackColor = true;
@@ -709,7 +747,7 @@
             this.tableLayoutPanel2.CellBorderStyle = System.Windows.Forms.TableLayoutPanelCellBorderStyle.Inset;
             this.tableLayoutPanel2.ColumnCount = 2;
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 39F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 42F));
             this.tableLayoutPanel2.Controls.Add(this.chart4, 0, 1);
             this.tableLayoutPanel2.Controls.Add(this.trackBar3, 1, 0);
             this.tableLayoutPanel2.Controls.Add(this.trackBar4, 1, 1);
@@ -775,7 +813,7 @@
             series6.YValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.Double;
             this.chart4.Series.Add(series5);
             this.chart4.Series.Add(series6);
-            this.chart4.Size = new System.Drawing.Size(303, 145);
+            this.chart4.Size = new System.Drawing.Size(300, 145);
             this.chart4.TabIndex = 6;
             this.chart4.Text = "chart4";
             this.chart4.MouseMove += new System.Windows.Forms.MouseEventHandler(this.chart_MouseMove);
@@ -783,22 +821,22 @@
             // trackBar3
             // 
             this.trackBar3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.trackBar3.Location = new System.Drawing.Point(321, 6);
+            this.trackBar3.Location = new System.Drawing.Point(318, 6);
             this.trackBar3.Margin = new System.Windows.Forms.Padding(4);
             this.trackBar3.Name = "trackBar3";
             this.trackBar3.Orientation = System.Windows.Forms.Orientation.Vertical;
-            this.trackBar3.Size = new System.Drawing.Size(31, 145);
+            this.trackBar3.Size = new System.Drawing.Size(34, 145);
             this.trackBar3.TabIndex = 3;
             this.trackBar3.Scroll += new System.EventHandler(this.trackBar_Scroll);
             // 
             // trackBar4
             // 
             this.trackBar4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.trackBar4.Location = new System.Drawing.Point(321, 161);
+            this.trackBar4.Location = new System.Drawing.Point(318, 161);
             this.trackBar4.Margin = new System.Windows.Forms.Padding(4);
             this.trackBar4.Name = "trackBar4";
             this.trackBar4.Orientation = System.Windows.Forms.Orientation.Vertical;
-            this.trackBar4.Size = new System.Drawing.Size(31, 145);
+            this.trackBar4.Size = new System.Drawing.Size(34, 145);
             this.trackBar4.TabIndex = 4;
             this.trackBar4.Scroll += new System.EventHandler(this.trackBar_Scroll);
             // 
@@ -848,7 +886,7 @@
             series8.Name = "S`(A,x)";
             this.chart3.Series.Add(series7);
             this.chart3.Series.Add(series8);
-            this.chart3.Size = new System.Drawing.Size(303, 145);
+            this.chart3.Size = new System.Drawing.Size(300, 145);
             this.chart3.TabIndex = 5;
             this.chart3.Text = "chart3";
             this.chart3.MouseMove += new System.Windows.Forms.MouseEventHandler(this.chart_MouseMove);
@@ -950,70 +988,10 @@
             this.Column4.ReadOnly = true;
             this.Column4.Width = 70;
             // 
-            // toolStripMenuItem_File
-            // 
-            this.toolStripMenuItem_File.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.зберегтиToolStripMenuItem,
-            this.зберегтиЯкToolStripMenuItem,
-            this.завантажитиToolStripMenuItem,
-            this.завантажитиЗToolStripMenuItem});
-            this.toolStripMenuItem_File.Name = "toolStripMenuItem_File";
-            this.toolStripMenuItem_File.Size = new System.Drawing.Size(48, 19);
-            this.toolStripMenuItem_File.Text = "Файл";
-            // 
-            // зберегтиToolStripMenuItem
-            // 
-            this.зберегтиToolStripMenuItem.Name = "зберегтиToolStripMenuItem";
-            this.зберегтиToolStripMenuItem.Size = new System.Drawing.Size(162, 22);
-            this.зберегтиToolStripMenuItem.Text = "Зберегти";
-            // 
-            // зберегтиЯкToolStripMenuItem
-            // 
-            this.зберегтиЯкToolStripMenuItem.Name = "зберегтиЯкToolStripMenuItem";
-            this.зберегтиЯкToolStripMenuItem.Size = new System.Drawing.Size(162, 22);
-            this.зберегтиЯкToolStripMenuItem.Text = "Зберегти як...";
-            // 
-            // завантажитиToolStripMenuItem
-            // 
-            this.завантажитиToolStripMenuItem.Name = "завантажитиToolStripMenuItem";
-            this.завантажитиToolStripMenuItem.Size = new System.Drawing.Size(162, 22);
-            this.завантажитиToolStripMenuItem.Text = "Завантажити";
-            // 
-            // завантажитиЗToolStripMenuItem
-            // 
-            this.завантажитиЗToolStripMenuItem.Name = "завантажитиЗToolStripMenuItem";
-            this.завантажитиЗToolStripMenuItem.Size = new System.Drawing.Size(162, 22);
-            this.завантажитиЗToolStripMenuItem.Text = "Завантажити з...";
-            // 
-            // menuStrip1
-            // 
-            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripMenuItem_File});
-            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
-            this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Padding = new System.Windows.Forms.Padding(8, 3, 0, 3);
-            this.menuStrip1.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
-            this.menuStrip1.Size = new System.Drawing.Size(784, 25);
-            this.menuStrip1.TabIndex = 1;
-            this.menuStrip1.Text = "menuStrip1";
-            this.menuStrip1.Visible = false;
-            // 
             // toolTipPos
             // 
             this.toolTipPos.UseAnimation = false;
             this.toolTipPos.UseFading = false;
-            // 
-            // pictureBoxLink
-            // 
-            this.pictureBoxLink.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pictureBoxLink.Image = global::HermiteSpline.Properties.Resources.ES4;
-            this.pictureBoxLink.InitialImage = null;
-            this.pictureBoxLink.Location = new System.Drawing.Point(30, 64);
-            this.pictureBoxLink.Name = "pictureBoxLink";
-            this.pictureBoxLink.Size = new System.Drawing.Size(347, 28);
-            this.pictureBoxLink.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBoxLink.TabIndex = 10;
-            this.pictureBoxLink.TabStop = false;
             // 
             // Form1
             // 
@@ -1022,11 +1000,9 @@
             this.BackColor = System.Drawing.SystemColors.Control;
             this.ClientSize = new System.Drawing.Size(784, 521);
             this.Controls.Add(this.tableLayoutPanelSplitter);
-            this.Controls.Add(this.menuStrip1);
             this.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.KeyPreview = true;
-            this.MainMenuStrip = this.menuStrip1;
             this.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.MinimumSize = new System.Drawing.Size(416, 414);
             this.Name = "Form1";
@@ -1035,10 +1011,12 @@
             this.tableLayoutInputs.ResumeLayout(false);
             this.tableLayoutSplines.ResumeLayout(false);
             this.tableLayoutSplines.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxLink)).EndInit();
             this.tableLayoutFunctions.ResumeLayout(false);
             this.tableLayoutFunctions.PerformLayout();
             this.tableLayoutBorErrEv.ResumeLayout(false);
             this.tableLayoutBorErrEv.PerformLayout();
+            this.tableLayoutPanelNuOrLinks.ResumeLayout(false);
             this.tableLayoutPanelEvalPoint.ResumeLayout(false);
             this.tableLayoutPanelEvalPoint.PerformLayout();
             this.tableLayoutPanelEvalSplitter.ResumeLayout(false);
@@ -1064,11 +1042,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.trackBar4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.chart3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewParams)).EndInit();
-            this.menuStrip1.ResumeLayout(false);
-            this.menuStrip1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxLink)).EndInit();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -1088,10 +1062,9 @@
         private System.Windows.Forms.Label labelB;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanelEvalPoint;
         private System.Windows.Forms.Button buttonEvalAll;
-        private System.Windows.Forms.Label labelLinks;
-        private System.Windows.Forms.Label labelNu;
+        private System.Windows.Forms.Label labelNuOrR;
         private System.Windows.Forms.TextBox textBoxBorderB;
-        private System.Windows.Forms.TextBox textBoxNu;
+        private System.Windows.Forms.TextBox textBoxNuOrR;
         private System.Windows.Forms.SplitContainer splitContainer1;
         private System.Windows.Forms.TabControl tabControlPlots;
         private System.Windows.Forms.TabPage tabPageFunc;
@@ -1103,12 +1076,6 @@
         private System.Windows.Forms.TrackBar trackBar3;
         private System.Windows.Forms.TrackBar trackBar4;
         private System.Windows.Forms.DataGridView dataGridViewParams;
-        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem_File;
-        private System.Windows.Forms.ToolStripMenuItem зберегтиToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem зберегтиЯкToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem завантажитиToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem завантажитиЗToolStripMenuItem;
-        private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.TrackBar trackBar2;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanelEvalSplitter;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanelEvalOut;
@@ -1130,6 +1097,9 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
         private System.Windows.Forms.ComboBox comboBoxLinks;
         private System.Windows.Forms.PictureBox pictureBoxLink;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanelNuOrLinks;
+        private System.Windows.Forms.RadioButton radioButtonLinkCount;
+        private System.Windows.Forms.RadioButton radioButtonNu;
     }
 }
 

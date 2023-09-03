@@ -13,7 +13,8 @@ namespace HermiteSpline
 {
     public partial class Form1 : System.Windows.Forms.Form
     {
-        double a = 2.0, b = 7.0, nu=Double.PositiveInfinity;
+        double a = 2.0, b = 7.0, nu = 0.001;
+        int r = 1;
         int linknum = 1, funcnum = 9;
         Spline s;
 
@@ -31,6 +32,7 @@ namespace HermiteSpline
             tbtochart.Add(trackBar4, chart4);
             comboBoxLinks.SelectedIndex = linknum - 1;
             comboBoxFunctions.SelectedIndex = funcnum;
+            textBoxNuOrR.Text = nu.ToString();
         }
 
         private void textBoxBorderA_Leave(object sender, EventArgs e)
@@ -109,11 +111,41 @@ namespace HermiteSpline
             }
         }
 
-        private void textBoxNu_Leave(object sender, EventArgs e)
+        private void radioButtonNuOrR_CheckedChanged(object sender, EventArgs e)
         {
-            nu = Double.Parse(((TextBox)sender).Text);
-            if (nu == 0.0)
-                nu = Double.PositiveInfinity;
+            switch (((RadioButton)sender).Name)
+            {
+                case "radioButtonNu":
+                    labelNuOrR.Text = "μ";
+                    nu = 0.001;
+                    textBoxNuOrR.Text = nu.ToString();
+                    break;
+                case "radioButtonLinkCount":
+                    labelNuOrR.Text = "r";
+                    r = 1;
+                    textBoxNuOrR.Text = r.ToString();
+                    break;
+            }
+        }
+
+        private void textBoxNuOrR_Leave(object sender, EventArgs e)
+        {
+            if (radioButtonNu.Checked)
+            {
+                nu = double.Parse(((TextBox)sender).Text);
+                if (nu == 0.0)
+                    nu = double.PositiveInfinity;
+            }
+            else if (radioButtonLinkCount.Checked)
+            {
+                r = int.Parse(((TextBox)sender).Text);
+                if (r == 0)
+                    r = 1;
+            }
+            else
+            {
+                throw new Exception("RadioButtons are broken :(");
+            }
         }
 
         private void buttonEvalAll_Click(object sender, EventArgs e)
@@ -125,7 +157,12 @@ namespace HermiteSpline
             sw.Start();
             try
             {
-                s = new Spline(funcnum, linknum, a, b, nu);
+                if (radioButtonNu.Checked)
+                    s = new Spline(funcnum, linknum, a, b, nu);
+                else if (radioButtonLinkCount.Checked)
+                    s = new Spline(funcnum, linknum, a, b, r);
+                else
+                    throw new Exception("RadioButtons are broken :(");
             }
             catch (Exception exc)
             {

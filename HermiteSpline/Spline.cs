@@ -32,13 +32,15 @@ namespace HermiteSpline
             internal int link_count;  //кількість ланок
             internal IntPtr A;        //параметри сплайна (link_conut*param_count елементів)
             internal IntPtr X;		  //точки наближення (link_count+1 елементів)
-            internal IntPtr A128;
-            internal IntPtr X128;
+            internal IntPtr A128;     //точки наближення (80, 96 або 128 біт)
+            internal IntPtr X128;     //параметри сплайна (80, 96 або 128 біт)
         };
         herm_params hp;
 
         [DllImport("HermiteLib.dll", CallingConvention = CallingConvention.Cdecl)]
-        static extern herm_params _HermGen(Byte funcnum, Byte linknum, double a, double b, double nu);
+        static extern herm_params _HermGenNu(Byte funcnum, Byte linknum, double a, double b, double nu);
+        [DllImport("HermiteLib.dll", CallingConvention = CallingConvention.Cdecl)]
+        static extern herm_params _HermGenR(Byte funcnum, Byte linknum, double a, double b, Int32 r);
 
         [DllImport("HermiteLib.dll", CallingConvention = CallingConvention.Cdecl)]
         static extern void _free(herm_params hp);
@@ -53,24 +55,14 @@ namespace HermiteSpline
         static extern double _MaxError(herm_params hp, Byte funcnum, double from, double to);
 
 
-
-        public Spline(int funcnum, int linknum, double a, double b, double nu)
+        private Spline(herm_params hp)
         {
-            try
-            {
-                this.hp = _HermGen((Byte)funcnum, (Byte)linknum, a, b, nu);
-            }
-            catch(Exception ex)
-            {
-                System.Windows.Forms.MessageBox.Show(ex.Message);
-                return;
-            }
+            this.hp = hp;
             if (hp.X == IntPtr.Zero || hp.A == IntPtr.Zero)
             {
                 throw new Exception("Couldn't create spline");
             }
-            this.funcnum = funcnum;
-            this.linknum = linknum;
+            this.linknum = hp.type;
             this.link_count = this.hp.link_count;
             this.param_count = this.hp.param_count;
             this.A = new double[this.link_count, this.param_count];
@@ -86,12 +78,47 @@ namespace HermiteSpline
                     A[i, j] = tmp[i * param_count + j];
                 }
             }
-            
+        }
+
+        public Spline(int funcnum, int linknum, double a, double b, double nu) : this(_HermGenNu((Byte)funcnum, (Byte)linknum, a, b, nu))
+        {
+            /*
+            herm_params hp;
+            try
+            {
+                hp = ;
+            }
+            catch(Exception ex)
+            {
+                System.Windows.Forms.MessageBox.Show(ex.Message);
+                return;
+            }
+            new Spline(hp);
+            */
+            this.funcnum = funcnum;
+        }
+        public Spline(int funcnum, int linknum, double a, double b, int r) : this(_HermGenR((Byte)funcnum, (Byte)linknum, a, b, r))
+        {
+            /*
+            herm_params hp;
+            try
+            {
+                hp = _HermGenR((Byte)funcnum, (Byte)linknum, a, b, r);
+            }
+            catch (Exception ex)
+            {
+                System.Windows.Forms.MessageBox.Show(ex.Message);
+                return;
+            }
+            new Spline(hp);
+            */
+            this.funcnum = funcnum;
         }
 
         ~Spline()
         {
             _free(this.hp);
+            this.hp = default;
         }
 
         public double Eval(double x)
