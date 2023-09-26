@@ -1,8 +1,8 @@
 
 SOURCES=dllmain.c functions.c hermite.c
 NAME=HermiteLib
-DEBUG_FLAGS=-shared -static -Wall -g -O0
-RELEASE_FLAGS=-shared -static -w -O2
+DEBUG_FLAGS=-shared -static -Wall -Wpedantic -g -O0 -D_DEBUG
+RELEASE_FLAGS=-shared -static -w -Ofast
 DEBUG_DIR=../Debug
 RELEASE_DIR=../Release
 

@@ -161,6 +161,56 @@ myfloat_t testdf14(const myfloat_t _x)
 	return (-2 * _x) / pow(_x * _x + 1., 2);
 }
 
+myfloat_t testfunc15(const myfloat_t _x)
+{
+	return cos(_x);
+}
 
-const function funcs[] =  { testfunc0, testfunc1, testfunc2, testfunc3, testfunc4, testfunc5, testfunc6, testfunc7, testfunc8, testfunc9, testfunc10, testfunc11, testfunc12, testfunc13, testfunc14 };
-const function dfuncs[] = { testdf0,   testdf1,   testdf2,   testdf3,   testdf4,   testdf5,   testdf6,   testdf7,   testdf8,   testdf9,   testdf10,   testdf11,   testdf12,   testdf13,   testdf14 };
+myfloat_t testdf15(const myfloat_t _x)
+{
+	return -sin(_x);
+}
+
+myfloat_t testfunc16(const myfloat_t _x)
+{
+	return exp(sin(_x));
+}
+
+myfloat_t testdf16(const myfloat_t _x)
+{
+	return exp(sin(_x)) * cos(_x);
+}
+
+myfloat_t testfunc17(const myfloat_t _x)
+{
+	return asin(_x);
+}
+
+myfloat_t testdf17(const myfloat_t _x)
+{
+	return 1. / sqrt(1 - _x*_x);
+}
+
+myfloat_t testfunc18(const myfloat_t _x)
+{
+	return sinh(_x);
+}
+
+myfloat_t testdf18(const myfloat_t _x)
+{
+	return cosh(_x);
+}
+
+myfloat_t testfunc19(const myfloat_t _x)
+{
+	return cosh(_x);
+}
+
+myfloat_t testdf19(const myfloat_t _x)
+{
+	return sinh(_x);
+}
+
+
+const function funcs[] =  { testfunc0, testfunc1, testfunc2, testfunc3, testfunc4, testfunc5, testfunc6, testfunc7, testfunc8, testfunc9, testfunc10, testfunc11, testfunc12, testfunc13, testfunc14, testfunc15, testfunc16, testfunc17, testfunc18, testfunc19, };
+const function dfuncs[] = { testdf0,   testdf1,   testdf2,   testdf3,   testdf4,   testdf5,   testdf6,   testdf7,   testdf8,   testdf9,   testdf10,   testdf11,   testdf12,   testdf13,   testdf14,   testdf15,   testdf16,   testdf17,   testdf18,   testdf19, };

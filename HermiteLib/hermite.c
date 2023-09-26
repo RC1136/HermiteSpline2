@@ -7,22 +7,15 @@
 
 #define isodd(x) (x & 1)
 
-FILE* logger;
 
-static void* mymalloc(size_t len, int line)
-{
-	printf("malloc: len: %u, line: %i\r\n", len, line);
-	return malloc(len);
-}
+#ifndef max
+#define max(a,b) (((a) > (b)) ? (a) : (b))
+#endif
 
-static void* mycalloc(size_t count, size_t size, int line)
-{
-	printf("calloc: count: %u, size: %u, line: %i\r\n", count, size, line);
-	return calloc(count, size);
-}
+#ifndef min
+#define min(a,b) (((a) < (b)) ? (a) : (b))
+#endif
 
-#define malloc(x) mymalloc(x, __LINE__);
-#define calloc(c,s) mycalloc(c,s, __LINE__);
 
 int param_count_map[] = {
 	[powexp4]  = 4,
@@ -580,13 +573,7 @@ int HermGen(function _f[], herm_params* hp, const myfloat_t a, const myfloat_t b
 //Обчислює параметри сплайна з похибкою nu
 int HermGenNu(function _f[], herm_params* hp, const myfloat_t a, const myfloat_t b, const myfloat_t nu)
 {
-	//logger = fopen("log.txt", "w+");
-	logger = stdout;
-	fprintf(logger, "1\r\n");
-	fflush(logger);
-	const myfloat_t eps = nu * 1e-5;
-	fprintf(logger, "2\r\n");
-	fflush(logger);
+	const myfloat_t eps = nu * 1e-3;
 	hp->param_count = param_count_map[hp->type];
 
 	const int odd = isodd(hp->param_count);	//Чи к-сть параметрів непарна
@@ -595,9 +582,6 @@ int HermGenNu(function _f[], herm_params* hp, const myfloat_t a, const myfloat_t
 
 	int errorcode = 0;
 	
-
-	fprintf(logger, "3\r\n");
-	fflush(logger);
 	struct linkparam{
 		myfloat_t params[5];
 		myfloat_t xright;
@@ -606,49 +590,27 @@ int HermGenNu(function _f[], herm_params* hp, const myfloat_t a, const myfloat_t
 	top = malloc(sizeof(*top)); if (top == NULL) return -1;
 	cur = top;
 
-	fprintf(logger, "4\r\n");
-	fflush(logger);
 	int count = 0;	//К-сть ланок
 	while (x2 < b) {
-		fprintf(logger, "5\r\n");
-		fflush(logger);
 		x0 = x2;
-		fprintf(logger, "5.0.0.1\r\n");
-		fflush(logger);
 		//x2 = fmin(b, x2 + delta * 2);
 		x2 = b < x2 + delta * 2 ? b : x2 + delta * 2;
-		fprintf(logger, "5.0.1\r\n");
-		fflush(logger);
 		delta = x2 - x0;
 		++count;
 		myfloat_t f[5];	//Значення функції
 		f[0] = _f[0](x0), f[1] = _f[1](x0);
-		fprintf(logger, "5.0.2\r\n");
-		fflush(logger);
 		f[2 + odd] = _f[0](x2), f[3 + odd] = _f[1](x2);
 		if (odd) f[2] = _f[0]((x2 + x0) * 0.5);
-		fprintf(logger, "5.1\r\n");
-		fflush(logger);
-		fprintf(logger, "Gen[%i](%p, %lf, %lf, %p)\r\n", linknum, &f[0], (double)x0, (double)x2, &(cur->params[0]));
-		fflush(logger);
 		errorcode = Gen[linknum](&f[0], x0, x2, &(cur->params[0]));
-		fprintf(logger, "5.2\r\n");
-		fflush(logger);
 		if (errorcode)
 			return errorcode;
-		fprintf(logger, "5.3\r\n");
-		fflush(logger);
 		myfloat_t nu1 = finderr(link[linknum], cur->params, _f[0], x0, x2);
 		if (nu1 < nu) {
 			cur->xright = x2;
 			break;
 		}
-		fprintf(logger, "6\r\n");
-		fflush(logger);
 		myfloat_t xl = x0, xr = x2, xprev = x2;
 		while (fabs(nu - nu1) > eps) {
-			fprintf(logger, "% .30lf\t% .30lf\t% .30lf\t% .30lf\t% .30le\n", (double)x0, (double)xl, (double)x2, (double)xr, (double)nu1);
-			fflush(logger);
 			xprev = x2;
 			if (nu < nu1) {
 				xr = x2;
@@ -663,24 +625,12 @@ int HermGenNu(function _f[], herm_params* hp, const myfloat_t a, const myfloat_t
 
 			f[2 + odd] = _f[0](x2), f[3 + odd] = _f[1](x2);
 			if (odd) f[2] = _f[0]((x2 + x0) * 0.5);
-			
-			for (int i = 0; i < hp->param_count; i++)
-				printf("%lf\n", (double)f[i]);
-			putchar('\n');
 
-			fprintf(logger, "gen...\r\n");
-			fflush(logger);
 			errorcode = Gen[linknum](&f[0], x0, x2, &(cur->params[0]));
 			if (errorcode)	//Тут теж потрібно би було вивільняти пам'ять, але ми ж мільйонери...
 				return errorcode;
 			nu1 = finderr(link[linknum], cur->params, _f[0], x0, x2);
 		}
-
-		for (int i = 0; i < hp->param_count; i++) {
-			printf("A[%d][%d] == %lf\n", count - 1, i, (double)cur->params[i]);
-		}
-		putchar('\n');
-		putchar('\n');
 
 		cur->xright = x2;
 		cur->next = malloc(sizeof(*cur));
@@ -700,7 +650,6 @@ int HermGenNu(function _f[], herm_params* hp, const myfloat_t a, const myfloat_t
 			int tmp = i * hp->param_count + j;
 			hp->A128[tmp] = iterator->params[j];
 			hp->A[tmp] = (double)hp->A128[tmp];
-			printf("A[%d][%d] == %lf\n", i, j, (double)iterator->params[j]);
 		}
 		hp->X128[i + 1] = iterator->xright;
 		hp->X[i + 1] = (double)hp->X128[i + 1];
@@ -708,9 +657,6 @@ int HermGenNu(function _f[], herm_params* hp, const myfloat_t a, const myfloat_t
 		iterator = iterator->next;
 		free(tmp);
 	}
-	putchar('\n');
-
-	//fclose(logger);
 	return 0;
 }
 
@@ -718,106 +664,98 @@ int HermGenNu(function _f[], herm_params* hp, const myfloat_t a, const myfloat_t
 int HermGenR(function _f[], herm_params* hp, const myfloat_t a, const myfloat_t b, const int r)
 {
 	int res = 0;
-	myfloat_t nul = 0, nur = 0, nu = 0;
+	myfloat_t nul = 0, nur = 0, nu = 0, prevnu = -1;
 	int k = 0;
 	const myfloat_t eps = 0.05;
 	hp->param_count = param_count_map[hp->type];
 
 
-step1:
-#if 0
-	{
-		nul = (myfloat_t)INFINITY, nur = (myfloat_t)0;
+	// step1:
 
-		myfloat_t f[5] = { 0 };
-		myfloat_t params[5] = { 0 };
-		int odd = isodd(hp->param_count);
+	nul = (myfloat_t)INFINITY, nur = (myfloat_t)0;
 
-		for (int i = 0; i < r; i++) {
+	myfloat_t f[5] = { 0 };
+	myfloat_t params[5] = { 0 };
+	int odd = isodd(hp->param_count);
 
-			const myfloat_t delta = (b - a) / r;
-			const myfloat_t x0 = a + i * delta, x2 = a + (i + 1) * delta;
-			f[0] = _f[0](x0), f[1] = _f[1](x0);
-			if (odd) f[2] = _f[0]((x0 + x2) / 2);
-			f[2 + odd] = _f[0](x2), f[3 + odd] = _f[1](x2);
+	for (int i = 0; i < r; i++) {
 
-			res = Gen[hp->type](f, x0, x2, params);
-			if (res < 0)
-				return res;
+		const myfloat_t delta = (b - a) / r;
+		const myfloat_t x0 = a + i * delta, x2 = a + (i + 1) * delta;
+		f[0] = _f[0](x0), f[1] = _f[1](x0);
+		if (odd) f[2] = _f[0]((x0 + x2) / 2);
+		f[2 + odd] = _f[0](x2), f[3 + odd] = _f[1](x2);
 
-			nu = finderr(link[hp->type], params, _f[0], x0, x2);
-
-			nul = min(nul, nu);
-		}
-
-		res = Gen[hp->type](f, a, b, params);
+		res = Gen[hp->type](f, x0, x2, params);
 		if (res < 0)
 			return res;
-		
-		nur = finderr(link[hp->type], params, _f[0], a, b);
 
-		// nu = 1./r; // ???
+		nu = finderr(link[hp->type], params, _f[0], x0, x2);
 
+		nul = min(nul, nu);
+		nur = max(nur, nu);
 	}
-#endif
-	nul = 1e-8;
-	nur = 42;
 
 	nu = (nul + nur) / 2.;
-step2:
+	
+	// step2:
 	// nul = nur = 0.;
 
+	// step3:
 
-step3:
-	res = HermGenNu(_f, hp, a, b, nu);
-	if (res != 0)
-		return res;
-	k = hp->link_count;
-
-step4:
-
-	if (k == r)
+	while (1)
 	{
-		const myfloat_t* params = &hp->A128[(k-1)*hp->param_count];
-		const myfloat_t from = hp->X128[(k-1)], to = hp->X128[k];
-		
-		//потрібно перевірити тільки останню ланку, бо на інших гарантовано похибка рівна nu
-		myfloat_t nui = finderr(link[hp->type], params, _f[0], from, to);
-		
-		if (fabs((nui-nu)/nu) < eps) {
-			goto step7;
+		if (prevnu == nu)
+			return -1;		//ми вийшли за межі точності
+
+		prevnu = nu;
+		HermClear(hp);
+		res = HermGenNu(_f, hp, a, b, nu);
+		if (res != 0)
+			return res;
+		k = hp->link_count;
+
+		// step4:
+
+		if (k == r)
+		{
+			const myfloat_t* params = &hp->A128[(k - 1) * hp->param_count];
+			const myfloat_t from = hp->X128[(k - 1)], to = hp->X128[k];
+
+			//потрібно перевірити тільки останню ланку, бо на інших гарантовано похибка рівна nu
+			myfloat_t nui = finderr(link[hp->type], params, _f[0], from, to);
+
+			if (fabs((nui - nu) / nu) < eps) {
+				// goto step7;
+				break;
+			}
 		}
-		else {
-			goto step6;
+
+		// step5:
+
+		if (k > r) {
+			nul = nu;
+			// nu = nur != 0 ? (nu+nur)/2 : nu*1.1;
+			nu = (nu + nur) / 2;
+			// goto step3;	//мав би перейти до пункту 4, виконавши пункт 3, тому йду в пункт 3
+			continue;
+		}
+
+		// step6:
+
+		if (k <= r) { //завжди істина, напевно...
+			nur = nu;
+			// nu = nul != 0 ? (nu+nul)/2 : nu*0.9;
+			nu = (nu + nul) / 2;
+			// goto step3; //тут так само...
+			continue;
 		}
 	}
 
-step5:
-
-	if (k >= r) {
-		nul = nu;
-		// nu = nur != 0 ? (nu+nur)/2 : nu*1.1;
-		nu = (nu+nur)/2;
-		goto step3;	//мав би перейти до пункту 4, виконавши пункт 3, тому йду в пункт 3
-	}
-
-step6:
-
-	if (k <= r) { //завжди істина, напевно...
-		nur = nu;
-		// nu = nul != 0 ? (nu+nul)/2 : nu*0.9;
-		nu = (nu+nul)/2;
-		goto step3; //тут так само...
-	}
-	else
-	{
-		goto step5;
-	}
-
-step7:
+	// step7:
 	//тут я мав би щось вивести але мені ліньки
 
-step8:
+	// step8:
 	return res;
 }
 
@@ -841,8 +779,5 @@ void HermClear(herm_params* hp)
 		free(hp->X128);
 		hp->X128 = NULL;
 	}
-	hp->link_count = 0;
-	hp->type = 0;
-	hp->param_count = 0;
 }
 

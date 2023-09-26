@@ -279,7 +279,12 @@
             "11.  exp(sin(x))+x",
             "12.  tg(x)",
             "13.  1/(x^3+1)",
-            "14.  1/(1+x^2)"});
+            "14.  1/(1+x^2)",
+            "15.  cos(x)",
+            "16.  exp(sin(x))",
+            "17.  arcsin(x)",
+            "18.  sinh(x)",
+            "19.  cosh(x)"});
             this.comboBoxFunctions.Location = new System.Drawing.Point(30, 30);
             this.comboBoxFunctions.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.comboBoxFunctions.Name = "comboBoxFunctions";
@@ -586,7 +591,7 @@
             this.tableLayoutCharts1.CellBorderStyle = System.Windows.Forms.TableLayoutPanelCellBorderStyle.Inset;
             this.tableLayoutCharts1.ColumnCount = 2;
             this.tableLayoutCharts1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutCharts1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 42F));
+            this.tableLayoutCharts1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 46F));
             this.tableLayoutCharts1.Controls.Add(this.chart2, 0, 1);
             this.tableLayoutCharts1.Controls.Add(this.trackBar2, 1, 1);
             this.tableLayoutCharts1.Controls.Add(this.trackBar1, 1, 0);
@@ -651,7 +656,7 @@
             series2.YValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.Double;
             this.chart2.Series.Add(series1);
             this.chart2.Series.Add(series2);
-            this.chart2.Size = new System.Drawing.Size(300, 142);
+            this.chart2.Size = new System.Drawing.Size(296, 142);
             this.chart2.TabIndex = 5;
             this.chart2.Text = "chart2";
             this.chart2.MouseMove += new System.Windows.Forms.MouseEventHandler(this.chart_MouseMove);
@@ -659,22 +664,22 @@
             // trackBar2
             // 
             this.trackBar2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.trackBar2.Location = new System.Drawing.Point(318, 158);
+            this.trackBar2.Location = new System.Drawing.Point(314, 158);
             this.trackBar2.Margin = new System.Windows.Forms.Padding(4);
             this.trackBar2.Name = "trackBar2";
             this.trackBar2.Orientation = System.Windows.Forms.Orientation.Vertical;
-            this.trackBar2.Size = new System.Drawing.Size(34, 142);
+            this.trackBar2.Size = new System.Drawing.Size(38, 142);
             this.trackBar2.TabIndex = 4;
             this.trackBar2.Scroll += new System.EventHandler(this.trackBar_Scroll);
             // 
             // trackBar1
             // 
             this.trackBar1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.trackBar1.Location = new System.Drawing.Point(318, 6);
+            this.trackBar1.Location = new System.Drawing.Point(314, 6);
             this.trackBar1.Margin = new System.Windows.Forms.Padding(4);
             this.trackBar1.Name = "trackBar1";
             this.trackBar1.Orientation = System.Windows.Forms.Orientation.Vertical;
-            this.trackBar1.Size = new System.Drawing.Size(34, 142);
+            this.trackBar1.Size = new System.Drawing.Size(38, 142);
             this.trackBar1.TabIndex = 3;
             this.trackBar1.Scroll += new System.EventHandler(this.trackBar_Scroll);
             // 
@@ -725,7 +730,7 @@
             series4.Name = "S(A,x)";
             this.chart1.Series.Add(series3);
             this.chart1.Series.Add(series4);
-            this.chart1.Size = new System.Drawing.Size(300, 142);
+            this.chart1.Size = new System.Drawing.Size(296, 142);
             this.chart1.TabIndex = 0;
             this.chart1.Text = "chart1";
             this.chart1.MouseMove += new System.Windows.Forms.MouseEventHandler(this.chart_MouseMove);
@@ -747,7 +752,7 @@
             this.tableLayoutPanel2.CellBorderStyle = System.Windows.Forms.TableLayoutPanelCellBorderStyle.Inset;
             this.tableLayoutPanel2.ColumnCount = 2;
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 42F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 46F));
             this.tableLayoutPanel2.Controls.Add(this.chart4, 0, 1);
             this.tableLayoutPanel2.Controls.Add(this.trackBar3, 1, 0);
             this.tableLayoutPanel2.Controls.Add(this.trackBar4, 1, 1);
@@ -813,7 +818,7 @@
             series6.YValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.Double;
             this.chart4.Series.Add(series5);
             this.chart4.Series.Add(series6);
-            this.chart4.Size = new System.Drawing.Size(300, 145);
+            this.chart4.Size = new System.Drawing.Size(296, 145);
             this.chart4.TabIndex = 6;
             this.chart4.Text = "chart4";
             this.chart4.MouseMove += new System.Windows.Forms.MouseEventHandler(this.chart_MouseMove);
@@ -821,22 +826,22 @@
             // trackBar3
             // 
             this.trackBar3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.trackBar3.Location = new System.Drawing.Point(318, 6);
+            this.trackBar3.Location = new System.Drawing.Point(314, 6);
             this.trackBar3.Margin = new System.Windows.Forms.Padding(4);
             this.trackBar3.Name = "trackBar3";
             this.trackBar3.Orientation = System.Windows.Forms.Orientation.Vertical;
-            this.trackBar3.Size = new System.Drawing.Size(34, 145);
+            this.trackBar3.Size = new System.Drawing.Size(38, 145);
             this.trackBar3.TabIndex = 3;
             this.trackBar3.Scroll += new System.EventHandler(this.trackBar_Scroll);
             // 
             // trackBar4
             // 
             this.trackBar4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.trackBar4.Location = new System.Drawing.Point(318, 161);
+            this.trackBar4.Location = new System.Drawing.Point(314, 161);
             this.trackBar4.Margin = new System.Windows.Forms.Padding(4);
             this.trackBar4.Name = "trackBar4";
             this.trackBar4.Orientation = System.Windows.Forms.Orientation.Vertical;
-            this.trackBar4.Size = new System.Drawing.Size(34, 145);
+            this.trackBar4.Size = new System.Drawing.Size(38, 145);
             this.trackBar4.TabIndex = 4;
             this.trackBar4.Scroll += new System.EventHandler(this.trackBar_Scroll);
             // 
@@ -886,7 +891,7 @@
             series8.Name = "S`(A,x)";
             this.chart3.Series.Add(series7);
             this.chart3.Series.Add(series8);
-            this.chart3.Size = new System.Drawing.Size(300, 145);
+            this.chart3.Size = new System.Drawing.Size(296, 145);
             this.chart3.TabIndex = 5;
             this.chart3.Text = "chart3";
             this.chart3.MouseMove += new System.Windows.Forms.MouseEventHandler(this.chart_MouseMove);
