@@ -6,11 +6,11 @@
 
 //Вигляд ланки
 enum linktype {
-	powexp4  = 1,
-	powexp5  = 2,
+	pow2exp1  = 1,
+	pow3exp1  = 2,
 	poly4    = 3,
 	poly5    = 4,
-	exppow5  = 5,
+	pow1exp3  = 5,
 	pow1exp2 = 6,
 	pow2exp2 = 7,
 	linktype_count
@@ -28,17 +28,17 @@ typedef struct {
 
 typedef myfloat_t(*function)(const myfloat_t);
 
-myfloat_t PE4(const myfloat_t x, const myfloat_t a[4]);
+myfloat_t W21(const myfloat_t x, const myfloat_t a[4]);
 
-myfloat_t dPE4(const myfloat_t x, const myfloat_t a[4]);
+myfloat_t dW21(const myfloat_t x, const myfloat_t a[4]);
 
-myfloat_t PE5(const myfloat_t x, const myfloat_t a[5]);
+myfloat_t W31(const myfloat_t x, const myfloat_t a[5]);
 
-myfloat_t dPE5(const myfloat_t x, const myfloat_t a[5]);
+myfloat_t dW31(const myfloat_t x, const myfloat_t a[5]);
 
-myfloat_t EP5(const myfloat_t x, const myfloat_t a[5]);
+myfloat_t W13(const myfloat_t x, const myfloat_t a[5]);
 
-myfloat_t dEP5(const myfloat_t x, const myfloat_t a[5]);
+myfloat_t dW13(const myfloat_t x, const myfloat_t a[5]);
 
 myfloat_t PN4(const myfloat_t x, const myfloat_t a[4]);
 
@@ -56,7 +56,7 @@ myfloat_t W12(const myfloat_t x, const myfloat_t a[4]);
 
 myfloat_t dW12(const myfloat_t x, const myfloat_t a[4]);
 
-myfloat_t HermiteSpline(const herm_params hp, const myfloat_t x, const char derivative);
+myfloat_t HermiteSpline(const herm_params hp, const myfloat_t x, const unsigned char derivative);
 
 int HermGenNu(function _f[], herm_params* hp, const myfloat_t a, const myfloat_t b, const myfloat_t nu);
 

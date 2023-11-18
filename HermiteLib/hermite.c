@@ -18,53 +18,53 @@
 
 
 int param_count_map[] = {
-	[powexp4]  = 4,
-	[powexp5]  = 5,
+	[pow2exp1]  = 4,
+	[pow3exp1]  = 5,
 	[poly4]    = 4,
 	[poly5]    = 5,
-	[exppow5]  = 5,
+	[pow1exp3]  = 5,
 	[pow2exp2] = 5,
 	[pow1exp2] = 4,
 };
 
 //Степенево-експоненціальна ланка з чотирма параметрами
-myfloat_t PE4(const myfloat_t x, const myfloat_t a[4])
+myfloat_t W21(const myfloat_t x, const myfloat_t a[4])
 {
 	return a[0] * pow(x, a[1] + a[2] * x) * exp(a[3] * x);
 }
 
 //Похідна степенево-експоненціальної ланки з чотирма параметрами
-myfloat_t dPE4(const myfloat_t x, const myfloat_t a[4])
+myfloat_t dW21(const myfloat_t x, const myfloat_t a[4])
 {
-	return PE4(x, a) * (a[2] * (1 + log(x)) + a[1] / x + a[3]);
+	return W21(x, a) * (a[2] * (1 + log(x)) + a[1] / x + a[3]);
 }
 
 //Степенево-експоненціальна ланка з п'ятьма параметрами
-myfloat_t PE5(const myfloat_t x, const myfloat_t a[5])
+myfloat_t W31(const myfloat_t x, const myfloat_t a[5])
 {
 	return a[0] * pow(x, a[1] + a[2] * x + a[3] * x * x) * exp(a[4] * x);
 }
 
 //Похідна степенево-експоненціальної ланки з п'ятьма параметрами
-myfloat_t dPE5(const myfloat_t x, const myfloat_t a[5])
+myfloat_t dW31(const myfloat_t x, const myfloat_t a[5])
 {
-	return PE5(x, a) * (
+	return W31(x, a) * (
 		(a[2] + 2 * a[3] * x) * log(x) + a[1] / x + a[2] + a[3] * x + a[4]
 	);
 }
 
 
-myfloat_t EP5(const myfloat_t x, const myfloat_t A[5])
+myfloat_t W13(const myfloat_t x, const myfloat_t A[5])
 {
 	const myfloat_t a = A[0], b = A[1], c = A[2], d = A[3], g = A[4];
 	return a * pow(x, b) * exp(c * x + d * x * x + g * x * x * x);
 }
 
 
-myfloat_t dEP5(const myfloat_t x, const myfloat_t A[5])
+myfloat_t dW13(const myfloat_t x, const myfloat_t A[5])
 {
-	const myfloat_t a = A[0], b = A[1], c = A[2], d = A[3], g = A[4];
-	return EP5(x, A) * (b / x + c + 2 * d * x + 3 * g * x * x);
+	const myfloat_t b = A[1], c = A[2], d = A[3], g = A[4];
+	return W13(x, A) * (b / x + c + 2 * d * x + 3 * g * x * x);
 }
 
 
@@ -92,7 +92,7 @@ myfloat_t W12(const myfloat_t x, const myfloat_t A[4])
 
 myfloat_t dW12(const myfloat_t x, const myfloat_t A[4])
 {
-	const myfloat_t a = A[0], b = A[1], c = A[2], d = A[3];
+	const myfloat_t b = A[1], c = A[2], d = A[3];
 	return W12(x, A) * (b / x + c + 2 * d * x);
 }
 
@@ -144,24 +144,24 @@ myfloat_t dPN5(const myfloat_t x, const myfloat_t a[5])
 }
 
 //Ермітовий сплайн з параметрами hp. Якщо derivative == 1, то обчислюється похідна
-myfloat_t HermiteSpline(const herm_params hp, const myfloat_t x, const char derivative)
+myfloat_t HermiteSpline(const herm_params hp, const myfloat_t x, const unsigned char derivative)
 {
 	static myfloat_t(*const link[2][linktype_count])(const myfloat_t, const myfloat_t[]) = {
 		{
-			[powexp4]  = PE4,
-			[powexp5]  = PE5,
+			[pow2exp1]  = W21,
+			[pow3exp1]  = W31,
 			[poly4]    = PN4,
 			[poly5]    = PN5,
-			[exppow5]  = EP5,
+			[pow1exp3]  = W13,
 			[pow2exp2] = W22,
 			[pow1exp2] = W12,
 		},
 		{
-			[powexp4]  = dPE4,
-			[powexp5]  = dPE5,
+			[pow2exp1]  = dW21,
+			[pow3exp1]  = dW31,
 			[poly4]    = dPN4,
 			[poly5]    = dPN5,
-			[exppow5]  = dEP5,
+			[pow1exp3]  = dW13,
 			[pow2exp2] = dW22,
 			[pow1exp2] = dW12,
 		},
@@ -224,8 +224,8 @@ int SolveGauss(const myfloat_t** a, const myfloat_t* b, const int count, myfloat
 	return 0;
 }
 
-//Обчислює параметри ланки PE4
-int HermGenPE4(const myfloat_t f[4], const myfloat_t x0, const myfloat_t x1, myfloat_t* out)
+//Обчислює параметри ланки W21
+int HermGenW21(const myfloat_t f[4], const myfloat_t x0, const myfloat_t x1, myfloat_t* out)
 {
 	//див. notes10(3)
 	out[2] = (f[1] / f[0] - (log(f[0] / f[2]) / (x0 - x1)) - (1. / x0 - log(x0 / x1) / (x0 - x1)) * (f[1] / f[0] - f[3] / f[2]) / (1. / x0 - 1. / x1)) /
@@ -244,8 +244,8 @@ int HermGenPE4(const myfloat_t f[4], const myfloat_t x0, const myfloat_t x1, myf
 	return 0;
 }
 
-//Обчислює параметри ланки PE5
-int HermGenPE5(const myfloat_t f[5], const myfloat_t x0, const myfloat_t x2, myfloat_t* out)
+//Обчислює параметри ланки W31
+int HermGenW31(const myfloat_t f[5], const myfloat_t x0, const myfloat_t x2, myfloat_t* out)
 {
 	//Точність до 8-го знаку
 	const myfloat_t x1 = (x2 + x0) * 0.5;
@@ -304,8 +304,8 @@ int HermGenPE5(const myfloat_t f[5], const myfloat_t x0, const myfloat_t x2, myf
 	return 0;
 }
 
-//Обчислює параметри ланки EP5
-int HermGenEP5(const myfloat_t F[5], const myfloat_t x0, const myfloat_t x2, myfloat_t* out)
+//Обчислює параметри ланки W13
+int HermGenW13(const myfloat_t F[5], const myfloat_t x0, const myfloat_t x2, myfloat_t* out)
 {
 	const myfloat_t x1 = (x2 + x0) * 0.5;
 	const myfloat_t f0 = F[0], df0 = F[1], f1 = F[2], f2 = F[3], df2 = F[4];
@@ -499,36 +499,80 @@ int HermGenPN5(const myfloat_t f[5], const myfloat_t x0, const myfloat_t x2, myf
 	return HermGenPN(&f[0], x0, x2, 5, out);
 }
 
+static inline myfloat_t finderr_bsearch(myfloat_t(*link)(const myfloat_t, const myfloat_t[]), const myfloat_t params[], function f, const myfloat_t from, const myfloat_t to)
+{
+	const myfloat_t eps = 1e-4;
+	myfloat_t lx = from, rx = to, x = (from+to)/2.;
+	myfloat_t lerr = fabs(link(lx, &(params[0])) - f(lx)),
+		      rerr = fabs(link(lx, &(params[0])) - f(lx)),
+	          err = fabs(link(x, &(params[0])) - f(x));
+
+	for (int i = 0; fabs((lerr - rerr) / err) > eps; i++) {
+		//lerr = finderr_bsearch(link, params, f, lx, x);
+		myfloat_t tmp_x = (lx + x) / 2.;
+		myfloat_t tmp_err = fabs(link(tmp_x, &(params[0])) - f(tmp_x));
+		if (lerr < tmp_err && err > tmp_err) {
+			rerr = err;
+			err = tmp_err;
+			lerr = lerr;
+			continue;
+		}
+		else
+		{
+			tmp_x = (x + rx) / 2.;
+			tmp_err = fabs(link(tmp_x, &(params[0])) - f(tmp_x));
+			// err < tmp_err && rerr > tmp_err
+			lerr = err;
+			err = tmp_err;
+			rerr = rerr;
+			continue;
+		}
+	}
+	return err;
+}
 
 myfloat_t finderr(myfloat_t(*link)(const myfloat_t, const myfloat_t[]), const myfloat_t params[], function f, const myfloat_t from, const myfloat_t to)
 {
-	myfloat_t res = 0.0;
-	for (int i = 0; i < 0xFFF; i++) {
-		const myfloat_t step = (to - from) / (0xFFF);
-		myfloat_t err = fabs(link(from + step * i, &(params[0])) - f(from + step * i));
-		if (res < err)
-			res = err;
+	myfloat_t max_err = 0.0;
+	const int step_count = 100;
+	const myfloat_t step = (to - from) / (step_count);
+
+	myfloat_t cur_err = fabs(link(from, &(params[0])) - f(from)), prev_err = 0.0;
+	myfloat_t der = +1.;
+	
+	for (int i = 1; i <= step_count; i++) {
+		const myfloat_t curx = from + step * i;
+
+		prev_err = cur_err;
+		cur_err = fabs(link(curx, &(params[0])) - f(curx));
+
+		if (der > 0 && cur_err < prev_err) {	//Якщо графік похибки перестав зростати...
+			myfloat_t tmp = finderr_bsearch(link, params, f, from + step*(i-2), from + step * (i));	//шукаємо точне значення похибки на піку
+			max_err = fmax(tmp, max_err);
+		}
+		der = copysign(1., cur_err - prev_err);
 	}
-	return res;
+
+	return max_err;
 }
 
 
 static int (* const Gen[])(const myfloat_t[], const myfloat_t, const myfloat_t, myfloat_t*) = {
-	[powexp4] = HermGenPE4,
-	[powexp5] = HermGenPE5,
+	[pow2exp1] = HermGenW21,
+	[pow3exp1] = HermGenW31,
 	[poly4] = HermGenPN4,
 	[poly5] = HermGenPN5,
-	[exppow5] = HermGenEP5,
+	[pow1exp3] = HermGenW13,
 	[pow2exp2] = HermGenW22,
 	[pow1exp2] = HermGenW12,
 };
 
 static myfloat_t(* const link[])(const myfloat_t, const myfloat_t[]) = {
-	[powexp4] = PE4,
-	[powexp5] = PE5,
+	[pow2exp1] = W21,
+	[pow3exp1] = W31,
 	[poly4] = PN4,
 	[poly5] = PN5,
-	[exppow5] = EP5,
+	[pow1exp3] = W13,
 	[pow2exp2] = W22,
 	[pow1exp2] = W12,
 };
@@ -621,7 +665,11 @@ int HermGenNu(function _f[], herm_params* hp, const myfloat_t a, const myfloat_t
 				x2 = 0.5 * (x2 + xr);
 			}
 			if (xprev == x2)
-				return -1;	//Тут витік пам'яті, але кому не байдуже?
+			{
+				//ми вийшли за межі точності, повертаємо те що є
+				printf("WARNING: prevnu == nu, return nur\r\n");
+				break;
+			}
 
 			f[2 + odd] = _f[0](x2), f[3 + odd] = _f[1](x2);
 			if (odd) f[2] = _f[0]((x2 + x0) * 0.5);
@@ -666,7 +714,7 @@ int HermGenR(function _f[], herm_params* hp, const myfloat_t a, const myfloat_t 
 	int res = 0;
 	myfloat_t nul = 0, nur = 0, nu = 0, prevnu = -1;
 	int k = 0;
-	const myfloat_t eps = 0.05;
+	const myfloat_t eps = 1e-2;
 	hp->param_count = param_count_map[hp->type];
 
 
@@ -705,8 +753,12 @@ int HermGenR(function _f[], herm_params* hp, const myfloat_t a, const myfloat_t 
 
 	while (1)
 	{
-		if (prevnu == nu)
-			return -1;		//ми вийшли за межі точності
+		if (fabs((prevnu - nu) / nu) < 1e-8) {
+			//ми вийшли за межі точності, повертаємо те що є
+			printf("WARNING: prevnu == nu, return nur\r\n");
+			HermClear(hp);
+			return HermGenNu(_f, hp, a, b, nur);
+		}
 
 		prevnu = nu;
 		HermClear(hp);

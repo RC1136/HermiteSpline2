@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Media;
 using System.Text;
 using System.Threading;
 using System.Windows.Forms;
@@ -19,7 +20,7 @@ namespace HermiteSpline
         Spline s;
 
         Thread evaluating;
-        
+        SoundPlayer soundPlayer = new SoundPlayer(@"c:\Windows\Media\tada.wav");
         Dictionary<TrackBar, Chart> tbtochart = new Dictionary<TrackBar, Chart>();
 
         public Form1()
@@ -173,6 +174,7 @@ namespace HermiteSpline
             sw.Stop();
             // richTextBoxOutputs.Text = sw.Elapsed.ToString() + '\n';
             this.Cursor = Cursors.AppStarting;
+            soundPlayer.Play();
 
             dataGridViewParams.Columns["Column4"].Visible = s.param_count == 5;
             dataGridViewParams.Rows.Clear();

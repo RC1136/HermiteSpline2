@@ -6,26 +6,26 @@ myfloat_t testfunc0(const myfloat_t _x)
 {
 	//a = 1, b = -3, c = 4, d = 7
 	//return 0.0;
-	return PE4(_x, (myfloat_t[]) { 1, -3, 4, 7 });
+	return W21(_x, (myfloat_t[]) { 1, -3, 4, 7 });
 }
 
 myfloat_t testdf0(const myfloat_t _x)
 {
 	//return 0.0;
-	return dPE4(_x, (myfloat_t[]) { 1, -3, 4, 7 });
+	return dW21(_x, (myfloat_t[]) { 1, -3, 4, 7 });
 }
 
 myfloat_t testfunc1(const myfloat_t _x)
 {
 	//a = 1, b = -2, c = 5, d = 3, v = 2
 	//return 0.0;
-	return PE5(_x, (myfloat_t[]) { 1, -2, 5, 3, 2 });
+	return W31(_x, (myfloat_t[]) { 1, -2, 5, 3, 2 });
 }
 
 myfloat_t testdf1(const myfloat_t _x)
 {
 	//return 0.0;
-	return dPE5(_x, (myfloat_t[]) { 1, -2, 5, 3, 2 });
+	return dW31(_x, (myfloat_t[]) { 1, -2, 5, 3, 2 });
 }
 
 myfloat_t testfunc2(const myfloat_t _x)

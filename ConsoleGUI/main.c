@@ -55,7 +55,7 @@ int main(void)
 	if (res < 2)
 		a = 2., b = 7.;
 
-
+	
 	// double nu = 0.;
 	// printf("¬вед≥ть точн≥сть наближенн€: ");
 	// res = scanf("%lf", &nu);

@@ -118,7 +118,7 @@ namespace HermiteSpline
         ~Spline()
         {
             _free(this.hp);
-            this.hp = default;
+            this.hp = default;  //не впевнений навіщо я це роблю
         }
 
         public double Eval(double x)
